@@ -1,11 +1,17 @@
 import './App.css';
 import Home from './Pages/Home';
+import Cart from './Pages/Cart';
+import Aos from 'aos'
+import { Route,Router, Switch } from 'react-router-dom';
+
 
 function App() {
+  Aos.init()
   return (
-    <div className="App">
-      <Home></Home>
-    </div>
+    <Switch>
+      <Route exact path="/"><Home/></Route>
+      <Route exact path="/cart"><Cart/></Route>
+    </Switch>
   );
 }
 

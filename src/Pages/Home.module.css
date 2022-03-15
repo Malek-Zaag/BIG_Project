@@ -1,16 +1,14 @@
-
-.art{
-    background-color: #0000CD; 
-    display: flex;
-    flex-direction: row;;
-    align-items: center ;
-}
-@media (max-width: 455px) {
-    .art{
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        background-color: red;
-    }
+.wrapper{
+        border-radius: 16px;
+        display: flex; 
+        flex-direction: row;
+        align-items: center;
 }
 
+.first{
+    float: left;
+}
+.second{
+    margin: 0 20px 0 0;
+    overflow: hidden;
+}

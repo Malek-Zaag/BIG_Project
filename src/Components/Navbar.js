@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
       <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
         <div className={classes.logo} style={{display: "flex",flexDirection:"row", alignItems: "center"}}>
-          <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "150px" }} src={logo} alt="logo"></img></a>
+          <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "200px" }} src={logo} alt="logo"></img></a>
           <SearchBar style={{height: "30px",margin: "0 10px 10px 10px"}}>hi</SearchBar>
         </div>
         <div>
