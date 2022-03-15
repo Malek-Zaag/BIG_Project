@@ -1,25 +1,23 @@
 import { Button, Container } from '@mui/material'
 import React from 'react'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import logo from '../images/logo.png'
-
-
+import SearchBar from 'material-ui-search-bar'
+import classes from "./Navbar.module.css"
 const Navbar = () => {
   return (
-    <div>
-      <section style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
-        <div>
-          <Button  href="/"><img src={logo} style={{ width: "15vw", height: "35vh" }} alt="logo"></img></Button>
+      <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
+        <div className={classes.logo} style={{display: "flex",flexDirection:"row", alignItems: "center"}}>
+          <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "150px" }} src={logo} alt="logo"></img></a>
+          <SearchBar style={{height: "30px",margin: "0 10px 10px 10px"}}>hi</SearchBar>
         </div>
         <div>
-          <Button  variant="outlined" style={{ margin: "16px" }} color="secondary" size="large" href="/">Home</Button>
-          <Button  variant="contained" style={{ margin: "16px" }} color="warning" size="large" href="shop" endIcon={<KeyboardArrowDownIcon />}>Shop</Button>
-          <Button  variant="contained" style={{ margin: "16px" }} color="success" size="large" href="cart">Cart</Button>
-          <Button  variant="contained" style={{ margin: "16px" }} color="warning" size="large" href="login">Login</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}>Shop</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="login">Login</Button>
         </div>
-      </section>
-    </div>
+      </div>
   )
 }
 
