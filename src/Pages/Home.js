@@ -4,8 +4,7 @@ import Navbar from '../Components/Navbar'
 import logo from '../images/logo.png'
 import login from '../images/login.png'
 import { makeStyles } from '@mui/styles';
-import MapContainer from '../Components/MapContainer'
-import { StaticGoogleMap, Marker } from 'react-static-google-map';
+
 
 
 const useStyles = makeStyles({
@@ -83,17 +82,15 @@ const Home = () => {
         <Grid sx={{ border: 0 }} item xs={12} md={6}>
           <Card  sx={{ border: "none", boxShadow: "none" }} className={classes.color}>
             <CardContent className={classes.color}>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Typography variant='h5'>
-                  <div>Adresse:Aouina 2045,Tunis</div>
-                  <div>Contact:zaag.malek1@gmail.com</div>
-
-                </Typography>
+              <Box component='span' sx={{  p: 2, border: '1px dashed grey' ,display: "flex", alignItems: "center", justifyContent: "center" }}>    
               </Box>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
+      <footer style={{textAlign:"center"}}>
+        Copyrigths@Malek2022
+      </footer>
     </div>
   )
 }
