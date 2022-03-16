@@ -4,7 +4,8 @@ const Cart = () => {
   return (
     <div>
         <Navbar></Navbar>
-        Cart</div>
+        cart
+    </div>
   )
 }
 
