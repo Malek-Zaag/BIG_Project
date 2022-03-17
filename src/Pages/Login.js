@@ -1,5 +1,4 @@
-import { Container, Grid, TextField } from '@mui/material'
-import { Box } from '@mui/system'
+import { Container, TextField } from '@mui/material'
 import React from 'react'
 import Navbar from '../Components/Navbar'
 
@@ -11,7 +10,7 @@ const Login = () => {
         <TextField fullWidth sx={{marginBottom:"75px"}} id="outlined-basic" label="Email" variant="outlined" />
         <br/>
         <TextField fullWidth id="outlined-basic" label="Password" variant="outlined" />
-        <a href="" style={{position:"absolute",right:"20px",bottom:"10px"}}>Don't have an account? Sign up</a>
+        <a href="/signup" style={{position:"absolute",right:"20px",bottom:"10px"}}>Don't have an account? Sign up</a>
       </Container>
     </div>
   )

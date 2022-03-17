@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <Grid container spacing={2} sx={{ paddingTop: '175px' }} justify="center" alignItems="center" className={classes.color}  >
+      <Grid container spacing={2} sx={{ paddingTop: '175px'}} justify="center" alignItems="center" className={classes.color}  >
         <Grid className={classes.color} item xs={12} md={6}>
           <Card sx={{ border: "none", boxShadow: "none" }}>
             <CardContent style={{ textAlign: 'center', backgroundColor: "#0000CD", }}>
@@ -45,7 +45,7 @@ const Home = () => {
         </Grid>
       </Grid>
       <Box sx={{ height: "300px", bgcolor: 'warning.main' }}></Box>
-      <Grid container spacing={2} justify="center" alignItems="center" className={classes.color}  >
+      <Grid container spacing={2} sx={{borderRadius:"16px"}} justify="center" alignItems="center"  className={classes.color}  >
         <Grid data-aos="fade-right" className={classes.color} item xs={12} md={6}>
           <Card sx={{ border: "none", boxShadow: "none" }}>
             <CardContent style={{ textAlign: 'center', backgroundColor: "#0000CD", }}>
