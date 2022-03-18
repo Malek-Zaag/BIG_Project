@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import Shop from './Pages/Shop';
 import Aos from 'aos'
 import { Route, Switch } from 'react-router-dom';
+import Signup from './Pages/Signup';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/cart"><Cart/></Route>
       <Route exact path="/shop"><Shop/></Route>
       <Route exact path="/login"><Login/></Route>
+      <Route exact path="/signup"><Signup/></Route>
     </Switch>
   );
 }
