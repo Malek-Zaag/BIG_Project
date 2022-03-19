@@ -6,7 +6,12 @@ import Shop from './Pages/Shop';
 import Aos from 'aos'
 import { Route, Switch } from 'react-router-dom';
 import Signup from './Pages/Signup';
-import CollapseButton from './Components/CollapseButton';
+import ElectricGuitars from './Shop/ElectricGuitars';
+import AcousticGuitars from './Shop/AcousticGuitars';
+import Drums from './Shop/Drums';
+import BassGuitars from './Shop/BassGuitars';
+import Pianos from './Shop/Pianos';
+import DjEquipment from './Shop/DjEquipment';
 
 
 function App() {
@@ -19,7 +24,13 @@ function App() {
       <Route exact path="/shop"><Shop/></Route>
       <Route exact path="/login"><Login/></Route>
       <Route exact path="/signup"><Signup/></Route>
-      <Route exact path="/button"><CollapseButton/></Route>
+      <Route exact path="/electricguitars"><ElectricGuitars/></Route>
+      <Route exact path="/acousticguitars"><AcousticGuitars/></Route>
+      <Route exact path="/pianos"><Pianos/></Route>
+      <Route exact path="/bassguitars"><BassGuitars/></Route>
+      <Route exact path="/drums"><Drums/></Route>
+      <Route exact path="/djequipment"><DjEquipment/></Route>
+
     </Switch>
   );
 }

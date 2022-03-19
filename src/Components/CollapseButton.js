@@ -10,12 +10,14 @@ const CollapseButton = () => {
             <div class={styles.dropbtn}>Shop</div>
             <div class={styles.dropdowncontent}>
                 <Typography variant='body1' fontWeight="bold" fontFamily="Fredoka">
-                    <a href="/">Electric Guitars</a>
-                    <a href="/">Acoustic Guitars</a>
-                    <a href="/">Bass Guitars</a>
-                    <a href="/">Drums</a>
-                    <a href="/">Piaons & Keyboards</a>
-                    <a href="/">DJ Equipment</a>
+                    <div class={styles.dropdwonstyle}>
+                        <a href="/electricguitars">Electric Guitars</a>
+                        <a href="/acousticguitars">Acoustic Guitars</a>
+                        <a href="/bassguitars">Bass Guitars</a>
+                        <a href="/drums">Drums</a>
+                        <a href="/pianos">Piaons & Keyboards</a>
+                        <a href="/djequipment">DJ Equipment</a>
+                    </div>
                 </Typography>
             </div>
         </div>
