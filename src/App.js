@@ -6,6 +6,7 @@ import Shop from './Pages/Shop';
 import Aos from 'aos'
 import { Route, Switch } from 'react-router-dom';
 import Signup from './Pages/Signup';
+import CollapseButton from './Components/CollapseButton';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/shop"><Shop/></Route>
       <Route exact path="/login"><Login/></Route>
       <Route exact path="/signup"><Signup/></Route>
+      <Route exact path="/button"><CollapseButton/></Route>
     </Switch>
   );
 }
