@@ -12,6 +12,7 @@ import Drums from './Shop/Drums';
 import BassGuitars from './Shop/BassGuitars';
 import Pianos from './Shop/Pianos';
 import DjEquipment from './Shop/DjEquipment';
+import AdminLogin from './Pages/AdminLogin';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Route exact path="/bassguitars"><BassGuitars/></Route>
       <Route exact path="/drums"><Drums/></Route>
       <Route exact path="/djequipment"><DjEquipment/></Route>
+      <Route exact path='/adminlogin'><AdminLogin/></Route>
 
     </Switch>
   );
