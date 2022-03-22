@@ -1,5 +1,6 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React from 'react'
+import AdminAvatar from '../Components/AdminAvatar'
 import Navbar from '../Components/Navbar'
 import test from "../images/test.jpg"
 
@@ -43,6 +44,7 @@ const ElectricGuitars = () => {
                     </Card>
                 </Grid>
             </Grid>
+            <AdminAvatar></AdminAvatar>
         </div>
     )
 }
