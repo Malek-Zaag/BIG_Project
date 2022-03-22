@@ -14,13 +14,14 @@ import Pianos from './Shop/Pianos';
 import DjEquipment from './Shop/DjEquipment';
 import AdminLogin from './Pages/AdminLogin';
 import AdminDashboard from './Pages/AdminDashboard';
+import AdminMembers from './Pages/AdminMembers';
+import AdminProducts from './Pages/AdminProducts';
 
 
 function App() {
   Aos.init()
   return (
     <Switch>
-
       <Route exact path="/"><Home/></Route>
       <Route exact path="/cart"><Cart/></Route>
       <Route exact path="/shop"><Shop/></Route>
@@ -34,6 +35,8 @@ function App() {
       <Route exact path="/djequipment"><DjEquipment/></Route>
       <Route exact path="/adminlogin"><AdminLogin/></Route>
       <Route exact path="/admindashboard"><AdminDashboard/></Route>
+      <Route exact path="/admindashboard/members"><AdminMembers/></Route>
+      <Route exact path="/admindashboard/products"><AdminProducts/></Route>
     </Switch>
   );
 }

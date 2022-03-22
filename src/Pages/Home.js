@@ -5,6 +5,7 @@ import logo from '../images/logo.png'
 import login from '../images/login.png'
 import location from '../images/location.png'
 import classes from '../Components/Style.module.css'
+import AdminAvatar from '../Components/AdminAvatar'
 
 
 const Home = () => {
@@ -97,6 +98,7 @@ const Home = () => {
       <footer style={{ textAlign: "center" }}>
         <Typography gutterBottom fontFamily="Fredoka" variant="h5">Copyrigths@Malek2022</Typography>
       </footer>
+      <AdminAvatar></AdminAvatar>
     </div>
   )
 }
