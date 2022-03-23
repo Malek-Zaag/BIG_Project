@@ -1,15 +1,20 @@
 import { Button, Grid, TextField, Container, FormControlLabel, FormLabel, RadioGroup, FormControl, Radio } from '@mui/material'
-import React from 'react'
+import React, {} from 'react'
 import Navbar from '../Components/Navbar'
 
 const Signup = () => {
-    const handleSubmit = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
-        const form=document.getElementsByTagName("form")
-        fetch("http://localhost:4000/signup",{
+        const form=document.getElementById("form")
+        await fetch("http://localhost:4000/signup",{
             method: "POST",
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify(form.firstname.value)
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({
+                firstname: form.firstname.value,
+                lastname: form.lastname.value,
+                email: form.email.value,
+                password: form.password.value,
+            })
         })
         .then(()=> console.log("post request done"))
         .catch((err)=> console.log(err))
@@ -18,7 +23,7 @@ const Signup = () => {
         <div>
             <Navbar></Navbar>
             <Container style={{ position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
-                <form onSubmit={handleSubmit} >
+                <form id="form" action='/editstore' method='post' >
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6}>
                             <TextField id="outlined-basic"name='firstname' label="First Name" variant="outlined" fullWidth />
@@ -42,7 +47,7 @@ const Signup = () => {
                             </FormControl>
                         </Grid>
                         <Grid sx={{ display: 'flex', flexDirection: "row", justifyContent: "flex-end" }} item xs={12}>
-                            <Button variant="contained" color="warning">submit</Button>
+                            <Button  onClick={handleClick} variant="contained" color="warning">submit</Button>
                         </Grid>
                     </Grid>
                 </form>
