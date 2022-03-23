@@ -17,9 +17,9 @@ const Signup = () => {
                 gender : form.gender.value,
             })
         })
-        .then(() => console.log('hii'))
+        .then()
         .catch((err)=> console.log(err))
-        console.log("hi")
+        
     }
     return (
         <div>
