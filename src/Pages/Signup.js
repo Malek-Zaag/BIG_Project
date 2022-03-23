@@ -6,7 +6,7 @@ const Signup = () => {
     const handleClick =  (e) => {
         e.preventDefault()
         const form=document.getElementById("form")
-        fetch("http://localhost:4000/signup",{
+        fetch("signup",{
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
@@ -17,8 +17,9 @@ const Signup = () => {
                 gender : form.gender.value,
             })
         })
-        .then(response => console.log('hii'))
+        .then(() => console.log('hii'))
         .catch((err)=> console.log(err))
+        console.log("hi")
     }
     return (
         <div>

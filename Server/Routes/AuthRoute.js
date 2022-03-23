@@ -9,4 +9,5 @@ router.get('/', (req,res)=>{
 }) 
 
 router.post('/signup',AuthController.singup )
+
 module.exports=router;
