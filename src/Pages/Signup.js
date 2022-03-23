@@ -3,10 +3,10 @@ import React, {} from 'react'
 import Navbar from '../Components/Navbar'
 
 const Signup = () => {
-    const handleClick = async (e) => {
+    const handleClick =  (e) => {
         e.preventDefault()
         const form=document.getElementById("form")
-        await fetch("http://localhost:4000/signup",{
+        fetch("http://localhost:4000/signup",{
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
@@ -14,19 +14,20 @@ const Signup = () => {
                 lastname: form.lastname.value,
                 email: form.email.value,
                 password: form.password.value,
+                gender : form.gender.value,
             })
         })
-        .then(()=> console.log("post request done"))
+        .then(response => console.log('hii'))
         .catch((err)=> console.log(err))
     }
     return (
         <div>
             <Navbar></Navbar>
             <Container style={{ position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
-                <form id="form" action='/editstore' method='post' >
+                <form id="form" >
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6}>
-                            <TextField id="outlined-basic"name='firstname' label="First Name" variant="outlined" fullWidth />
+                            <TextField id="outlined-basic" name='firstname' label="First Name" variant="outlined" fullWidth />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField id="outlined-basic" name='lastname' label="Last Name" variant="outlined" fullWidth />
@@ -40,14 +41,14 @@ const Signup = () => {
                         <Grid item xs={12}>
                             <FormControl>
                                 <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-                                <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue="female" name="radio-buttons-group">
+                                <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue="female" name="gender">
                                     <FormControlLabel value="female" control={<Radio />} label="Female" />
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                                 </RadioGroup>
                             </FormControl>
                         </Grid>
                         <Grid sx={{ display: 'flex', flexDirection: "row", justifyContent: "flex-end" }} item xs={12}>
-                            <Button  onClick={handleClick} variant="contained" color="warning">submit</Button>
+                            <Button type='submit' onClick={handleClick} variant="contained" color="warning">submit</Button>
                         </Grid>
                     </Grid>
                 </form>
