@@ -1,13 +1,19 @@
 const express=require("express");
+const route=require("./Routes/AuthRoute")
 const PORT=process.env.PORT || 4000;
 
 const app=express()
+
+//middleware
+app.use(express.json())
+
 
 app.listen(PORT, ()=>{
 
     console.log(`Server listening on ${PORT}`);
 })
 
-app.get('/' , (req,res)=>{
-    res.send("hello user!!!")
-})
+
+
+//routes
+app.use(route)
