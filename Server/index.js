@@ -13,10 +13,9 @@ const corsOptions = {
 }
 
 //middleware
-app.use(express.json())
+app.use(express.json());
 app.use(cors(corsOptions));
-app.use(cookieParser)
-
+app.use(cookieParser());
 
 //db
 const dbURI = "mongodb+srv://admin:admin@cluster0.gkmmv.mongodb.net/Sama3ni?retryWrites=true&w=majority"
