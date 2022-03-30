@@ -13,23 +13,28 @@ module.exports.singup = (req, res) => {
     console.log(req.body)
     const user = new User(req.body)
     user.save()
-        .then((res) => console.log("done posting to db"))
+        .then((result) => {console.log("done posting to db")})
         .catch((err) => { console.log(err) })
     const token=createToken(user._id)
     console.log(token)
     console.log('done')
     res.cookie("jwt", token, {httpOnly: true, maxAge: maxAge * 1000})
-    res.status(201).send("done posting")
+    res.status(200).send("done posting")
 }
 
 module.exports.login = async (req, res)=>{
     const {email, password}=req.body
     try{
         const user= await User.login(email,password)
-        res.status(200).send(user)
+        res.status(200).send("done")
     }
     catch (err) {
         res.status(400).json({err})
     }
 
+}
+module.exports.members =  (req,res)=>{
+    User.find()
+    .then((result) => res.json(result))
+    .catch (err => console.log(err))
 }

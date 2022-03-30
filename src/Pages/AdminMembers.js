@@ -5,10 +5,11 @@ import DashDrawer from '../Components/DashDrawer'
 const AdminMembers = () => {
     const [members, setMembers] = useState([])
     useEffect(() => {
-        fetch("members",)
+        fetch("/members")
             .then(res => res.json())
-            .then(result => setMembers(result))
+            .then(result => { setMembers(result); console.log(result) })
             .catch(err => console.log(err))
+        
     }, [])
     return (
         <div>
@@ -20,9 +21,7 @@ const AdminMembers = () => {
                     <DashDrawer></DashDrawer>
                 </Grid>
                 < Grid item xs={12}>
-
                     <div>test</div>
-
                 </Grid>
             </Grid>
         </div>

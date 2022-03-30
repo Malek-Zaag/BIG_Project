@@ -1,8 +1,10 @@
 import { Button, Grid, TextField, Container, FormControlLabel, FormLabel, RadioGroup, FormControl, Radio } from '@mui/material'
 import React, {} from 'react'
+import { useHistory } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 
 const Signup = () => {
+    const history=useHistory()
     const handleClick =  (e) => {
         e.preventDefault()
         const form=document.getElementById("form")
@@ -17,7 +19,7 @@ const Signup = () => {
                 gender : form.gender.value,
             })
         })
-        .then()
+        .then((res)=> {if (res.ok) history.push('/login')})
         .catch((err)=> console.log(err))
         
     }

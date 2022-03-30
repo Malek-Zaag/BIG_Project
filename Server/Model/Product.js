@@ -7,7 +7,7 @@ const productSchema=new mongoose.Schema({
         required: true,
     },
     stock:{
-        type: Int16Array,
+        type: Number,
         required: true
     },
     description:{
@@ -19,7 +19,7 @@ const productSchema=new mongoose.Schema({
         required: true
     },
     price:{
-        type: Int16Array,
+        type: Number,
         required: true
     }
 })
