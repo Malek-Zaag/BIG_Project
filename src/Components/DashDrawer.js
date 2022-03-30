@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemText, MenuItem, Typography } from '@mui/material'
+import { List, ListItem, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -6,7 +6,7 @@ const DashDrawer = () => {
     const history=useHistory()
     return (
         <div>
-            <Drawer open variant='persistent' anchor='left'>
+            <Menu open variant='persistent' anchor='left'>
                 <MenuItem>
                     <Typography variant='h2' fontWeight="bold" fontFamily="Fredoka">
                         Dashboard
@@ -22,7 +22,7 @@ const DashDrawer = () => {
                         <ListItemText primaryTypographyProps={{fontFamily: "Fredoka", variant: "h4",}} primary="Products"></ListItemText>
                     </ListItem>
                 </List>
-            </Drawer>
+            </Menu>
         </div>
     )
 }
