@@ -26,7 +26,6 @@ module.exports.login = async (req, res)=>{
     const {email, password}=req.body
     try{
         const user= await User.login(email,password)
-        console.log(user)
         res.status(200).send(user)
     }
     catch (err) {
