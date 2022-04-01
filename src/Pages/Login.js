@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom'
 
 const Login = () => {
   const history = useHistory()
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault()
     const form = document.getElementById("form")
-    const res = await fetch("/login", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -16,11 +16,11 @@ const Login = () => {
         password: form.password.value,
       })
     })
-    const data = await res.json()
-    if (data._id) {
-      history.push("/")
-    }
+    .then(res=> res.json())
+    .then(result =>  history.push("/"))
+    .catch( err => console.log(err))
   }
+
   return (
     <div>
       <Navbar></Navbar>
