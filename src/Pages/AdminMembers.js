@@ -1,5 +1,7 @@
+import { Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import AdminDashboard from './AdminDashboard'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const AdminMembers = () => {
     const [members, setMembers] = useState([])
@@ -14,6 +16,9 @@ const AdminMembers = () => {
             .catch(err => console.log(err))
 
     }, [])
+    const deletion= (id) =>{
+        
+    }
     if (loading) return <div>Loading ....</div>
     else
         return (
@@ -21,11 +26,12 @@ const AdminMembers = () => {
                 <AdminDashboard></AdminDashboard>
                 <div>
                     {members.map(member => (
-                        <div id={member._id}>
+                        <div id={member._id} style={{marginTop: "1em",marginBottom: "1em" ,display: "flex", justifyContent: "space-between"}}>
                             <span>First Name: {member.firstname}</span>
                             <span>Last Name: {member.lastname}</span>
                             <span>Last Name: {member.email}</span>
                             <span>Last Name: {member.gender}</span>
+                            <Button variant='contained' style={{backgroundColor: "#d50000"}}><DeleteIcon></DeleteIcon>DELETE</Button>
                         </div>
                     ))}
                 </div>
