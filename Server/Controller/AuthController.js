@@ -8,7 +8,7 @@ const createToken = (id) => {
     })
 }
 
-module.exports.singup =  (req, res) => {
+module.exports.singup = (req, res) => {
     console.log(req.body)
     const user = new User(req.body)
     user.save()
@@ -40,6 +40,20 @@ module.exports.members = (req, res) => {
         .catch(err => console.log(err))
 }
 
-module.exports.shop =(req,res) =>{
+module.exports.shop = (req, res) => {
 
+}
+
+module.exports.get_member = (req, res) => {
+    const id = req.params.id
+    User.findById(id)
+        .then(() => console.log("user found"))
+        .catch((err) => console.log(err))
+}
+module.exports.delete_member = (req, res) => {
+
+    const id = req.params.id
+    User.findByIdAndDelete(id)
+        .then(() => console.log("user deleted"))
+        .catch((err) => console.log(err))
 }

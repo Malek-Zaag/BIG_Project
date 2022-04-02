@@ -13,4 +13,11 @@ router.post('/signup',AuthController.singup )
 router.post('/login',AuthController.login)
 
 router.get('/members', AuthController.members)
+
+router.get("/members/:id", AuthController.get_member)
+
+router.delete("/members/:id", AuthController.delete_member)
+
+
+
 module.exports=router;

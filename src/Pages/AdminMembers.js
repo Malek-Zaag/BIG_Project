@@ -15,9 +15,12 @@ const AdminMembers = () => {
             })
             .catch(err => console.log(err))
 
-    }, [])
+    }, [members])
     const deletion= (id) =>{
-        
+        const endpoint=`http://localhost:4000/members/${id}`
+        fetch(endpoint, {method: "DELETE"})
+        .then(() => console.log("item deleted"))
+        .catch( err => console.log(err))
     }
     if (loading) return <div>Loading ....</div>
     else
@@ -31,7 +34,7 @@ const AdminMembers = () => {
                             <span>Last Name: {member.lastname}</span>
                             <span>Last Name: {member.email}</span>
                             <span>Last Name: {member.gender}</span>
-                            <Button variant='contained' style={{backgroundColor: "#d50000"}}><DeleteIcon></DeleteIcon>DELETE</Button>
+                            <Button variant='contained' onClick={() => deletion(member._id)} style={{backgroundColor: "#d50000"}}><DeleteIcon></DeleteIcon>DELETE</Button>
                         </div>
                     ))}
                 </div>
