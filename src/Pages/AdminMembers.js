@@ -5,25 +5,17 @@ import DashDrawer from '../Components/DashDrawer'
 const AdminMembers = () => {
     const [members, setMembers] = useState([])
     useEffect(() => {
-        fetch("/members")
+        fetch("http://localhost:4000/members")
             .then(res => res.json())
-            .then(result => { setMembers(result); console.log(result) })
+            .then(result => setMembers(result))
             .catch(err => console.log(err))
-        
+
     }, [])
     return (
         <div>
-            <Grid style={{ backgroundColor: '#0000CD', display: "flex", justifyContent: "center" }}>
-                <Grid itme xs={12}>
-                    <Button style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" variant="contained" href="/">Home</Button>
-                </Grid>
-                <Grid item xs={12}>
-                    <DashDrawer></DashDrawer>
-                </Grid>
-                < Grid item xs={12}>
-                    <div>test</div>
-                </Grid>
-            </Grid>
+            <Button style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" variant="contained" href="/">Home</Button>
+            <DashDrawer></DashDrawer>
+            <div>hii</div>
         </div>
     )
 }

@@ -36,6 +36,10 @@ module.exports.login = async (req, res) => {
 }
 module.exports.members = (req, res) => {
     User.find()
-        .then((result) => res.json(result))
+        .then((result) => res.send(result))
         .catch(err => console.log(err))
+}
+
+module.exports.shop =(req,res) =>{
+
 }

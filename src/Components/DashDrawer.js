@@ -6,7 +6,7 @@ const DashDrawer = () => {
     const history=useHistory()
     return (
         <div>
-            <Menu open variant='persistent' anchor='left'>
+            <Menu  variant='persistent' anchor='left'>
                 <MenuItem>
                     <Typography variant='h2' fontWeight="bold" fontFamily="Fredoka">
                         Dashboard
