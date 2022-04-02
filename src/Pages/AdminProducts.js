@@ -19,7 +19,7 @@ const AdminProducts = () => {
         price: form.price.value,
       })
     })
-    .then((res)=>{res.json()})
+    .then(()=> console.log("product saved to db"))
     .catch( err => console.log(err))
   }
   return (
@@ -36,7 +36,7 @@ const AdminProducts = () => {
             <input name="name"></input>
             <br />
             <label for="description">Product Description</label>
-            <textarea rows="4" cols="50" name="description"></textarea>
+            <textarea rows="10" cols="30" name="description"></textarea>
             <br />
             <label for="price">Product Price</label>
             <input name="price"></input>
@@ -57,7 +57,7 @@ const AdminProducts = () => {
             <label for="stock">Product Stock</label>
             <input name="stock"></input>
             <br />
-            <Button type="submit" variant='contained' color='success'>submit</Button>
+            <Button type="submit" variant='contained' onClick={() =>handleClick} color='success'>submit</Button>
           </fieldset>
         </form>
       </Typography>

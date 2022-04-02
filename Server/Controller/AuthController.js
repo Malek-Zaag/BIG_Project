@@ -1,5 +1,6 @@
 const User = require("../Model/User")
 const jwt = require("jsonwebtoken")
+const Product = require("../Model/Product")
 
 const maxAge = 700 * 24 * 60 * 60
 const createToken = (id) => {
@@ -57,3 +58,23 @@ module.exports.delete_member = (req, res) => {
         .then(() => console.log("user deleted"))
         .catch((err) => console.log(err))
 }
+
+module.exports.create_product= (req,res)=>{
+    const product= new Product()
+    product.save()
+    .then((res)=> {console.log(product); console.log("product saved to db")})
+    .catch((err)=> console.log(err))
+}
+module.exports.get_product= (req,res)=>{
+    const id=req.params.id
+    Product.findById(id)
+    .then(res => console.log("Product found"))
+    .catch( err => console.log(err))
+}
+module.exports.products= (req,res)=>{
+    Product.find()
+    .then( res=> console.log("products fetched"))
+    .catch(err => console.log(err)) 
+}
+
+
