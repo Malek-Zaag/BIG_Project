@@ -2,6 +2,7 @@ import { Container, TextField, Button } from '@mui/material'
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import { useHistory } from 'react-router-dom'
+import AdminAvatar from '../Components/AdminAvatar'
 
 const Login = () => {
   const history = useHistory()
@@ -33,6 +34,7 @@ const Login = () => {
           <Button variant="contained" onClick={handleClick} style={{ position: "absolute", left: "20px", bottom: "10px" }} color="success" >Login</Button>
         </Container>
       </form>
+      <AdminAvatar></AdminAvatar>
     </div>
   )
 }

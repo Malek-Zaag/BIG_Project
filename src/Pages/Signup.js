@@ -1,6 +1,7 @@
 import { Button, Grid, TextField, Container, FormControlLabel, FormLabel, RadioGroup, FormControl, Radio } from '@mui/material'
 import React, {} from 'react'
 import { useHistory } from 'react-router-dom'
+import AdminAvatar from '../Components/AdminAvatar'
 import Navbar from '../Components/Navbar'
 
 const Signup = () => {
@@ -56,6 +57,7 @@ const Signup = () => {
                     </Grid>
                 </form>
             </Container>
+            <AdminAvatar></AdminAvatar>
         </div >
     )
 }

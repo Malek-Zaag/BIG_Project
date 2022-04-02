@@ -7,6 +7,7 @@ const Shop = () => {
     <div>
       <Navbar></Navbar> 
       <AdminAvatar></AdminAvatar>
+      <div>hi</div>
     </div>
   )
 }
