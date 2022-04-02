@@ -1,9 +1,9 @@
 import { Button, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 const AdminProducts = () => {
-  const [product,setProducts]= useState([])
+  const [products,setProducts]= useState([])
   const handleClick= (e)=>{
     e.preventDefault()
     const form=document.getElementById("form")
@@ -22,6 +22,12 @@ const AdminProducts = () => {
     .then(()=> console.log("product saved to db"))
     .catch( err => console.log(err))
   }
+  useEffect( ()=>{
+    fetch("http://localhost:4000/products")
+    .then(res => res.json())
+    .then(result => setProducts(result))
+    .catch(err => console.log(err))
+  },[])
   return (
     <div>
       <div style={{ backgroundColor: '#0000CD', display: "flex", justifyContent: "space-between" }}>
@@ -57,9 +63,17 @@ const AdminProducts = () => {
             <label for="stock">Product Stock</label>
             <input name="stock"></input>
             <br />
-            <Button type="submit" variant='contained' onClick={() =>handleClick} color='success'>submit</Button>
+            <Button type="submit" variant='contained' onClick={handleClick} color='success'>submit</Button>
           </fieldset>
         </form>
+        <div>
+          {products.map(product=>(
+            <div id={product._id}>
+              <h1>{product.name}</h1>
+              <img style={{height: "500px", width: "500px"}} src={product.image} alt="proudct"></img>
+            </div>
+          ))}
+        </div>
       </Typography>
     </div>
   )

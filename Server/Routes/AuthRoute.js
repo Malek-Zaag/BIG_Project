@@ -19,4 +19,6 @@ router.get("/members/:id", AuthController.get_member)
 router.delete("/members/:id", AuthController.delete_member)
 
 router.post("/products", AuthController.create_product)
+
+router.get("/products", AuthController.products)
 module.exports=router;

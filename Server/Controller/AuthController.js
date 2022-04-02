@@ -60,7 +60,7 @@ module.exports.delete_member = (req, res) => {
 }
 
 module.exports.create_product= (req,res)=>{
-    const product= new Product()
+    const product= new Product(req.body)
     product.save()
     .then((res)=> {console.log(product); console.log("product saved to db")})
     .catch((err)=> console.log(err))
@@ -73,7 +73,7 @@ module.exports.get_product= (req,res)=>{
 }
 module.exports.products= (req,res)=>{
     Product.find()
-    .then( res=> console.log("products fetched"))
+    .then( result=> res.send(result))
     .catch(err => console.log(err)) 
 }
 
