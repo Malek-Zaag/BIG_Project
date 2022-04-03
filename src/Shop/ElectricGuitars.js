@@ -16,7 +16,7 @@ const ElectricGuitars = () => {
             <Navbar></Navbar>
             <AdminAvatar></AdminAvatar>
             <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
-                {products.filter(product => product.category==="Drum").map(product => (
+                {products.filter(product => product.category==="Electric Guitar").map(product => (
                     <Grid item xs={12} md={3}>
                         <Card id={product._id}>
                             <CardActionArea>

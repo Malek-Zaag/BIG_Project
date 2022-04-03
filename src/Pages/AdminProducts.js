@@ -62,10 +62,10 @@ const AdminProducts = () => {
             <select name="category">
               <option value="Electric Guitar">Electric Guitar</option>
               <option value="Drum">Drum</option>
-              <option value="Acoustic Guitarel">Acoustic Guitar</option>
+              <option value="Acoustic Guitar">Acoustic Guitar</option>
               <option value="Bass Guitar">Bass Guitar</option>
               <option value="Piano">Piano</option>
-              <option value="DJ Equipmen">DJ Equipment</option>
+              <option value="DJ Equipment">DJ Equipment</option>
             </select>
             <br />
             <label for="stock">Product Stock</label>
