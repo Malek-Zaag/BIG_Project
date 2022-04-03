@@ -24,11 +24,11 @@ const AdminProducts = () => {
       .then(() => console.log("product saved to db"))
       .catch(err => console.log(err))
   }
-  const handleDelete = (id)=>{
-    const endpoint=`http://localhost:4000/products/${id}`
-    fetch(endpoint, {method: "DELETE"})
-    .then(() => console.log("item deleted"))
-    .catch(err => console.log(err))
+  const handleDelete = (id) => {
+    const endpoint = `http://localhost:4000/products/${id}`
+    fetch(endpoint, { method: "DELETE" })
+      .then(() => console.log("item deleted"))
+      .catch(err => console.log(err))
   }
   useEffect(() => {
     fetch("http://localhost:4000/products")
@@ -75,8 +75,8 @@ const AdminProducts = () => {
           </fieldset>
         </form>
         <div>
-          {products.map(product => (
-            <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
+          <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
+            {products.map(product => (
               <Grid item xs={12} md={3}>
                 <Card id={product._id}>
                   <CardActionArea>
@@ -111,8 +111,8 @@ const AdminProducts = () => {
                   </CardActionArea>
                 </Card>
               </Grid>
-            </Grid>
-          ))}
+            ))}
+          </Grid>
         </div>
       </Typography>
     </div>
