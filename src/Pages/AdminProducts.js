@@ -1,15 +1,17 @@
-import { Button, Typography } from '@mui/material'
+import { Button, Card, Grid, Typography, CardActions, CardActionArea, CardMedia, CardContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 const AdminProducts = () => {
-  const [products,setProducts]= useState([])
-  const handleClick= (e)=>{
+  const [products, setProducts] = useState([])
+  const handleClick = (e) => {
     e.preventDefault()
-    const form=document.getElementById("form")
-    fetch("http://localhost:4000/products",{
+    const form = document.getElementById("form")
+    fetch("http://localhost:4000/products", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: form.name.value,
         description: form.description.value,
@@ -19,15 +21,15 @@ const AdminProducts = () => {
         price: form.price.value,
       })
     })
-    .then(()=> console.log("product saved to db"))
-    .catch( err => console.log(err))
+      .then(() => console.log("product saved to db"))
+      .catch(err => console.log(err))
   }
-  useEffect( ()=>{
+  useEffect(() => {
     fetch("http://localhost:4000/products")
-    .then(res => res.json())
-    .then(result => setProducts(result))
-    .catch(err => console.log(err))
-  },[])
+      .then(res => res.json())
+      .then(result => setProducts(result))
+      .catch(err => console.log(err))
+  }, [])
   return (
     <div>
       <div style={{ backgroundColor: '#0000CD', display: "flex", justifyContent: "space-between" }}>
@@ -67,11 +69,43 @@ const AdminProducts = () => {
           </fieldset>
         </form>
         <div>
-          {products.map(product=>(
-            <div id={product._id}>
-              <h1>{product.name}</h1>
-              <img style={{height: "500px", width: "500px"}} src={product.image} alt="proudct"></img>
-            </div>
+          {products.map(product => (
+            <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
+              <Grid item xs={12} md={3}>
+                <Card id={product._id}>
+                  <CardActionArea>
+                    <CardMedia
+                      alt='test'
+                      component="img"
+                      image={product.image}>
+                    </CardMedia>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div"
+                        fontWeight="bold" align="center" fontFamily="Fredoka">
+                        {product.name}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" component="div"
+                        fontWeight="bold" fontFamily="Fredoka">
+                        {product.description}
+                      </Typography>
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Typography gutterBottom variant="h5" component="span"
+                          fontWeight="bold" fontFamily="Fredoka">
+                          Price:{product.price}$
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="span"
+                          fontWeight="bold" sx={{ color: "green" }} fontFamily="Fredoka">
+                          Stock:{product.stock}
+                        </Typography>
+                      </div>
+                    </CardContent>
+                    <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+                      <Button variant='contained' align style={{ backgroundColor: "#d50000" }}><DeleteIcon></DeleteIcon>DELETE</Button>
+                    </CardActions>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            </Grid>
           ))}
         </div>
       </Typography>
