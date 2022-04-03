@@ -21,4 +21,9 @@ router.delete("/members/:id", AuthController.delete_member)
 router.post("/products", AuthController.create_product)
 
 router.get("/products", AuthController.products)
+
+router.get("/products/:id", AuthController.get_product)
+
+router.delete("/products/:id", AuthController.delete_product)
+
 module.exports=router;

@@ -24,12 +24,18 @@ const AdminProducts = () => {
       .then(() => console.log("product saved to db"))
       .catch(err => console.log(err))
   }
+  const handleDelete = (id)=>{
+    const endpoint=`http://localhost:4000/products/${id}`
+    fetch(endpoint, {method: "DELETE"})
+    .then(() => console.log("item deleted"))
+    .catch(err => console.log(err))
+  }
   useEffect(() => {
     fetch("http://localhost:4000/products")
       .then(res => res.json())
       .then(result => setProducts(result))
       .catch(err => console.log(err))
-  }, [])
+  }, [products])
   return (
     <div>
       <div style={{ backgroundColor: '#0000CD', display: "flex", justifyContent: "space-between" }}>
@@ -100,7 +106,7 @@ const AdminProducts = () => {
                       </div>
                     </CardContent>
                     <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                      <Button variant='contained' align style={{ backgroundColor: "#d50000" }}><DeleteIcon></DeleteIcon>DELETE</Button>
+                      <Button variant='contained' onClick={() => handleDelete(product._id)} align style={{ backgroundColor: "#d50000" }}><DeleteIcon></DeleteIcon>Remove</Button>
                     </CardActions>
                   </CardActionArea>
                 </Card>

@@ -77,4 +77,10 @@ module.exports.products= (req,res)=>{
     .catch(err => console.log(err)) 
 }
 
+module.exports.delete_product = (req,res)=>{
+    Product.findByIdAndDelete(req.params.id)
+    .then(() => console.log("product deleted"))
+    .catch (err => console.log(err))
+}
+
 
