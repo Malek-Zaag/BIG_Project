@@ -24,6 +24,8 @@ router.get("/products", AuthController.products)
 
 router.get("/products/:id", AuthController.get_product)
 
+router.get("/product/:page", AuthController.get_product_page)
+
 router.delete("/products/:id", AuthController.delete_product)
 
 module.exports=router;

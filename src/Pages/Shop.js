@@ -4,12 +4,26 @@ import Navbar from '../Components/Navbar'
 import { Grid, Card, Button, Typography, CardMedia, CardActionArea, CardContent, CardActions, Pagination } from "@mui/material"
 const Shop = () => {
   const [products, setProducts] = useState([])
-  useEffect(() => {
-    fetch("http://localhost:4000/products")
+  const [page,setPage] = useState(1)
+  
+  const fetchProductsfromPage = (page) => {
+    const endpoint = `http://localhost:4000/product/${page}`
+    fetch(endpoint)
       .then(res => res.json())
       .then(result => setProducts(result))
       .catch(err => console.log(err))
-  }, [products])
+  }
+   /* useEffect(() => {
+    fetch("http://localhost:4000/products")
+      .then(res => res.json())
+      .then(result => setProducts(result.slice(0,3)))
+      .catch(err => console.log(err))
+  }, [products]) */ 
+  const handleChange = (e,p)=>{
+    setPage(p)
+    fetchProductsfromPage(page)
+  }
+  
   return (
     <div>
       <Navbar></Navbar>
@@ -52,8 +66,8 @@ const Shop = () => {
           </Grid>
         ))}
       </Grid>
-      <div style={{display: "flex",justifyContent: "center",marginTop: "1rem"}}>
-        <Pagination count={10} />
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+        <Pagination count={10} page={page} onChange={handleChange} />
       </div>
     </div>
   )

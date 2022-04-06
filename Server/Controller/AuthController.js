@@ -41,10 +41,6 @@ module.exports.members = (req, res) => {
         .catch(err => console.log(err))
 }
 
-module.exports.shop = (req, res) => {
-
-}
-
 module.exports.get_member = (req, res) => {
     const id = req.params.id
     User.findById(id)
@@ -75,6 +71,13 @@ module.exports.products= (req,res)=>{
     Product.find()
     .then( result=> res.send(result))
     .catch(err => console.log(err)) 
+}
+module.exports.get_product_page= (req,res)=>{
+    const page=req.params.page;
+    const start=(-1+page)*3  //position to start slicing from which means showing from
+    Product.find()
+    .then( result => {res.send(result.slice(start,3));})
+    .catch( err => console.log(err))
 }
 
 module.exports.delete_product = (req,res)=>{
