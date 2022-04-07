@@ -4,28 +4,25 @@ import Navbar from '../Components/Navbar'
 import { Grid, Card, Button, Typography, CardMedia, CardActionArea, CardContent, CardActions, Pagination } from "@mui/material"
 const Shop = () => {
   const [products, setProducts] = useState([])
-  const [page,setPage] = useState(1)
-  
+  const [page, setPage] = useState(1)
+
   const fetchProductsfromPage = (page) => {
     const endpoint = `http://localhost:4000/product/${page}`
     fetch(endpoint)
       .then(res => res.json())
-      .then(result => setProducts(result))
+      .then(result => { setProducts(result); console.log(result) })
       .catch(err => console.log(err))
   }
-   /* useEffect(() => {
-    fetch("http://localhost:4000/products")
-      .then(res => res.json())
-      .then(result => setProducts(result.slice(0,3)))
-      .catch(err => console.log(err))
-  }, [products]) */ 
-  const handleChange = (e,p)=>{
+  const handleChange = (e, p) => {
     setPage(p)
-    fetchProductsfromPage(page)
+    console.log(page)
   }
-  
+  useEffect( ()=>{
+    fetchProductsfromPage(page)
+  }, [page])
+
   return (
-    <div>
+    <div style={{position: "relative", paddingBottom: "100px"}}>
       <Navbar></Navbar>
       <AdminAvatar></AdminAvatar>
       <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
@@ -66,9 +63,9 @@ const Shop = () => {
           </Grid>
         ))}
       </Grid>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-        <Pagination count={10} page={page} onChange={handleChange} />
-      </div>
+      <footer  style={{position: "absolute",width: "100%",left: "0",bottom: "0",display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+        <Pagination  count={10} page={page} onChange={handleChange} />
+      </footer>
     </div>
   )
 }

@@ -55,35 +55,37 @@ module.exports.delete_member = (req, res) => {
         .catch((err) => console.log(err))
 }
 
-module.exports.create_product= (req,res)=>{
-    const product= new Product(req.body)
+module.exports.create_product = (req, res) => {
+    const product = new Product(req.body)
     product.save()
-    .then((res)=> {console.log(product); console.log("product saved to db")})
-    .catch((err)=> console.log(err))
+        .then((res) => { console.log(product); console.log("product saved to db") })
+        .catch((err) => console.log(err))
 }
-module.exports.get_product= (req,res)=>{
-    const id=req.params.id
+module.exports.get_product = (req, res) => {
+    const id = req.params.id
     Product.findById(id)
-    .then(res => console.log("Product found"))
-    .catch( err => console.log(err))
+        .then(res => console.log("Product found"))
+        .catch(err => console.log(err))
 }
-module.exports.products= (req,res)=>{
+module.exports.products = (req, res) => {
     Product.find()
-    .then( result=> res.send(result))
-    .catch(err => console.log(err)) 
+        .then(result => res.send(result))
+        .catch(err => console.log(err))
 }
-module.exports.get_product_page= (req,res)=>{
-    const page=req.params.page;
-    const start=(-1+page)*3  //position to start slicing from which means showing from
+module.exports.get_product_page = (req, res) => {
+    const page = req.params.page;
+    console.log(page)
+    const start = (page - 1) * 8  //position to start slicing from which means showing from
+    const end = start + 8
     Product.find()
-    .then( result => {res.send(result.slice(start,3));})
-    .catch( err => console.log(err))
+        .then(result => { res.send(result.slice(start, end)) })
+        .catch(err => console.log(err))
 }
 
-module.exports.delete_product = (req,res)=>{
+module.exports.delete_product = (req, res) => {
     Product.findByIdAndDelete(req.params.id)
-    .then(() => console.log("product deleted"))
-    .catch (err => console.log(err))
+        .then(() => console.log("product deleted"))
+        .catch(err => console.log(err))
 }
 
 
