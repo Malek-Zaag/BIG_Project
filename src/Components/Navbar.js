@@ -7,30 +7,65 @@ import classes from "./Navbar.module.css"
 import CollapseButton from './CollapseButton';
 import { Autocomplete, TextField } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import InputAdornment from '@mui/material/InputAdornment';
+import { useHistory } from "react-router-dom";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+
+
+
 
 const Navbar = () => {
   const [items, setItems] = useState([]);
+  const history = useHistory()
   useEffect(() => {
     fetch("http://localhost:4000/products")
       .then(res => res.json())
       .then(result => setItems(result))
       .catch(err => console.log(err))
   }, [])
+  const handleOnHover = (result) => {
+    // the item hovered
+    console.log(result)
+  }
+
+  const handleOnSelect = (item) => {
+    // the item selected
+    console.log(item)
+  }
+
+  const handleOnFocus = () => {
+    console.log('Focused')
+  }
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log(string, results)
+  }
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: 'block', textAlign: 'left' }}>{item.name}</span>
+      </>
+    )
+  }
+
   return (
     <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
       <div className={classes.logo} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "200px" }} src={logo} alt="logo"></img></a>
-          <Autocomplete
-            size='small'
-            sx={{backgroundColor: "white", width: "15vw",borderRadius: "16px"}}
-            id="free-solo-demo"
-            freeSolo
-            onChange={() => {alert("worked")}}
-            fullWidth	
-            options={items.map((option) => option.name)}
-            renderInput={(params) => <TextField sx={{borderRadius: "16px"}} color="success" {...params} label="Search" />}
-            popupIcon=<SearchOutlinedIcon />
+        <div style={{ width: 400 }}>
+          <ReactSearchAutocomplete
+            items={items}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
           />
+        </div>
       </div>
       <div>
         <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
