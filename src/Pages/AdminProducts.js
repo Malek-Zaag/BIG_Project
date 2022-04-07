@@ -1,4 +1,4 @@
-import { Button, Card, Grid, Typography, CardActions, CardActionArea, CardMedia, CardContent } from '@mui/material'
+import { Button, Card, Grid, Pagination,Typography, CardActions, CardActionArea, CardMedia, CardContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -6,6 +6,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([])
+  const [page, setPage] = useState(1)
+
+  const fetchProductsfromPage = (page) => {
+    const endpoint = `http://localhost:4000/product/${page}`
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(result => { setProducts(result); console.log(result) })
+      .catch(err => console.log(err))
+  }
+  const handleChange = (e, p) => {
+    setPage(p)
+    console.log(page)
+  }
+  useEffect( ()=>{
+    fetchProductsfromPage(page)
+  }, [page])
   const handleClick = (e) => {
     e.preventDefault()
     const form = document.getElementById("form")
@@ -37,7 +53,7 @@ const AdminProducts = () => {
       .catch(err => console.log(err))
   }, [products])
   return (
-    <div>
+    <div style={{position: "relative", paddingBottom: "100px"}}>
       <div style={{ backgroundColor: '#0000CD', display: "flex", justifyContent: "space-between" }}>
         <Button style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" variant="contained" href="/admindashboard/members">Members</Button>
         <Button style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" variant="contained" href="/">Home</Button>
@@ -115,6 +131,9 @@ const AdminProducts = () => {
           </Grid>
         </div>
       </Typography>
+      <footer  style={{position: "absolute",width: "100%",left: "0",bottom: "0",display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+        <Pagination  count={10} page={page} onChange={handleChange} />
+      </footer>
     </div>
   )
 }
