@@ -10,8 +10,8 @@ const createToken = (id) => {
 }
 const handleErrors = (err) => {
     let error = { email: "", password: "", firstname: "", lastname: "" }
-    if (err.code ===11000){
-        error.email="Please enter another email , this email is already existing"
+    if (err.code === 11000) {
+        error.email = "Please enter another email , this email is already existing"
         return error
     }
     if (err.message.includes("user validation failed")) {
@@ -32,7 +32,10 @@ module.exports.singup = (req, res) => {
             res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
             res.status(200).send("done posting");
         })
-        .catch((err) => {res.status(400).send(handleErrors(err)) })
+        .catch((err) => {
+            const errors = handleErrors(err)
+            res.status(400).json({ errors })
+        })
 }
 
 module.exports.login = async (req, res) => {
@@ -44,7 +47,8 @@ module.exports.login = async (req, res) => {
         }
     }
     catch (err) {
-        res.status(400).json({ err })
+        const errors=handleErrors(err)
+        res.status(200).send({errors})
     }
 
 }

@@ -1,28 +1,43 @@
 import { Button, Grid, TextField, Container, FormControlLabel, FormLabel, RadioGroup, FormControl, Radio } from '@mui/material'
-import React, {} from 'react'
+import React, { } from 'react'
 import { useHistory } from 'react-router-dom'
 import AdminAvatar from '../Components/AdminAvatar'
 import Navbar from '../Components/Navbar'
 
 const Signup = () => {
-    const history=useHistory()
-    const handleClick =  (e) => {
+    const history = useHistory()
+    const handleClick = (e) => {
         e.preventDefault()
-        const form=document.getElementById("form")
-        fetch("http://localhost:4000/signup",{
+        const form = document.getElementById("form")
+        const emailerror= document.getElementById("email-error")
+        const passworderror= document.getElementById("password-error")
+        const firstnamerror= document.getElementById("fname-error")
+        const lastnameerror= document.getElementById("lname-error")
+
+        fetch("http://localhost:4000/signup", {
             method: "POST",
-            headers: { "Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 firstname: form.firstname.value,
                 lastname: form.lastname.value,
                 email: form.email.value,
                 password: form.password.value,
-                gender : form.gender.value,
+                gender: form.gender.value,
             })
         })
-        .then((res)=> {if (res.ok) history.push('/login')})
-        .catch((err)=> console.log(err))
-        
+            .then((res) => {
+                res.json()
+                //if (res.ok) { history.push('/login') }
+            })
+            .then(result => {
+                const data=result
+                console.log(data)
+            })
+            .catch((err) => {
+                
+                
+            })
+
     }
     return (
         <div>
@@ -32,15 +47,19 @@ const Signup = () => {
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6}>
                             <TextField id="outlined-basic" name='firstname' label="First Name" variant="outlined" fullWidth />
+                            <div id="fname-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField id="outlined-basic" name='lastname' label="Last Name" variant="outlined" fullWidth />
+                            <div id="lname-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} >
                             <TextField id="outlined-basic" name='email' label="Email" variant="outlined" fullWidth />
+                            <div id="email-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} >
                             <TextField id="outlined-basic" name='password' label="Password" variant="outlined" fullWidth />
+                            <div id="password-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12}>
                             <FormControl>
