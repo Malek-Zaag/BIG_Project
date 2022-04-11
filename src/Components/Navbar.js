@@ -2,13 +2,8 @@ import { Button } from '@mui/material'
 import { React, useState, useEffect } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import logo from '../images/logo.png'
-import SearchBar from 'material-ui-search-bar'
 import classes from "./Navbar.module.css"
 import CollapseButton from './CollapseButton';
-import { Autocomplete, TextField } from '@mui/material';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useHistory } from "react-router-dom";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 

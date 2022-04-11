@@ -8,18 +8,27 @@ const createToken = (id) => {
         expiresIn: maxAge
     })
 }
+const handleErrors = () => {
+
+}
 
 module.exports.singup = (req, res) => {
-    console.log(req.body)
-    const user = new User(req.body)
-    user.save()
-        .then((result) => { console.log("done posting new user to database") })
-        .catch((err) => { console.log(err) })
-    const token = createToken(user._id)
-    console.log(token)
-    console.log('done')
-    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 })
-    res.status(200).send("done posting")
+    try {
+        console.log(req.body)
+        const user = new User(req.body)
+        user.save()
+            .then((result) => { console.log("done posting new user to database") })
+            .catch((err) => { console.log(err) })
+        const token = createToken(user._id)
+        console.log(token)
+        console.log('done')
+        res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 })
+        res.status(200).send("done posting")
+    }
+    catch (err) {
+        const errors=handleErrors(err)
+        res.status(400).json({errors })
+    }
 }
 
 module.exports.login = async (req, res) => {
