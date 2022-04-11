@@ -8,27 +8,31 @@ const createToken = (id) => {
         expiresIn: maxAge
     })
 }
-const handleErrors = () => {
+const handleErrors = (err) => {
+    let error = { email: "", password: "", firstname: "", lastname: "" }
+    if (err.code ===11000){
+        error.email="Please enter another email , this email is already existing"
+        return error
+    }
+    if (err.message.includes("user validation failed")) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            error[properties.path] = properties.message;
+        })
+        return error
+    }
 
 }
 
 module.exports.singup = (req, res) => {
-    try {
-        console.log(req.body)
-        const user = new User(req.body)
-        user.save()
-            .then((result) => { console.log("done posting new user to database") })
-            .catch((err) => { console.log(err) })
-        const token = createToken(user._id)
-        console.log(token)
-        console.log('done')
-        res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 })
-        res.status(200).send("done posting")
-    }
-    catch (err) {
-        const errors=handleErrors(err)
-        res.status(400).json({errors })
-    }
+    const user = new User(req.body)
+    user.save()
+        .then((result) => {
+            console.log("done posting new user to database");
+            const token = createToken(user._id);
+            res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.status(200).send("done posting");
+        })
+        .catch((err) => {res.status(400).send(handleErrors(err)) })
 }
 
 module.exports.login = async (req, res) => {

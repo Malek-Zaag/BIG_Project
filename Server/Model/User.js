@@ -5,26 +5,25 @@ const md5 = require("md5")
 const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
-        required: [true, "please enter a name"]
+        required: [true, "please enter a firstname"]
     },
     lastname: {
         type: String,
-        required: [true, "please enter a name"]
+        required: [true, "please enter a lastname"]
     },
     email: {
         type: String,
-        required: true,
-        unique: true,
+        required: [true, "please enter an email"],
         lowercase: true,
         validate: [isEmail, "please enter a valid email"]
     },
     password: {
         type: String,
         required: [true, "please enter a password"],
+        minlength: [6, "minimum password length is 6 "]
     },
     gender: {
         type: String,
-        required: true,
     }
 
 })
