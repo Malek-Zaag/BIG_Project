@@ -28,7 +28,7 @@ function App() {
       <Route exact path="/shop"><Shop/></Route>
       <Route exact path="/login"><Login/></Route>
       <Route exact path="/signup"><Signup/></Route>
-      <Route exact path="/products/:id"><ProductPage id="5"/></Route>
+      <Route exact path="/products/:id"><ProductPage id={window.location.href.substring(window.location.href.lastIndexOf('/')+1)} /></Route>
       <Route exact path="/electricguitars"><ElectricGuitars/></Route>
       <Route exact path="/acousticguitars"><AcousticGuitars/></Route>
       <Route exact path="/pianos"><Pianos/></Route>

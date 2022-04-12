@@ -20,12 +20,12 @@ const handleErrors = (err) => {
         })
         return error
     }
-    if (err.message.includes("We cannot find this email")){
-        error.email="Incorrect email please try again"
+    if (err.message.includes("We cannot find this email")) {
+        error.email = "Incorrect email please try again"
         return error
     }
-    if (err.message.includes("Incorrect password")){
-        error.password="Incorrect password please try again"
+    if (err.message.includes("Incorrect password")) {
+        error.password = "Incorrect password please try again"
         return error
     }
 }
@@ -55,7 +55,7 @@ module.exports.login = async (req, res) => {
         }
     }
     catch (err) {
-        const errors=handleErrors(err)
+        const errors = handleErrors(err)
         console.log(errors)
         res.status(400).send(errors)
     }
@@ -90,7 +90,7 @@ module.exports.create_product = (req, res) => {
 module.exports.get_product = (req, res) => {
     const id = req.params.id
     Product.findById(id)
-        .then(res => console.log("Product found"))
+        .then(result => res.send(result))
         .catch(err => console.log(err))
 }
 module.exports.products = (req, res) => {
