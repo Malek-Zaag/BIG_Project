@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import AdminAvatar from '../Components/AdminAvatar'
 import Navbar from '../Components/Navbar'
 import { Grid, Card, Button, Typography, CardMedia, CardActionArea, CardContent, CardActions, Pagination } from "@mui/material"
+import { useHistory } from 'react-router-dom'
 const Shop = () => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
-
+  const history=useHistory()
   const fetchProductsfromPage = (page) => {
     const endpoint = `http://localhost:4000/product/${page}`
     fetch(endpoint)
@@ -56,7 +57,7 @@ const Shop = () => {
                   </div>
                 </CardContent>
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                  <Button variant='outlined' align color="success">Add TO Cart</Button>
+                  <Button onClick={()=>{history.push(`/products/${product._id}`) }} variant='outlined' align color="success">See Product</Button>
                 </CardActions>
               </CardActionArea>
             </Card>

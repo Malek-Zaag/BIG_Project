@@ -16,6 +16,7 @@ import AdminLogin from './Pages/AdminLogin';
 import AdminDashboard from './Pages/AdminDashboard';
 import AdminMembers from './Pages/AdminMembers';
 import AdminProducts from './Pages/AdminProducts';
+import ProductPage from './Components/ProductPage';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route exact path="/shop"><Shop/></Route>
       <Route exact path="/login"><Login/></Route>
       <Route exact path="/signup"><Signup/></Route>
+      <Route exact path="/products/:id"><ProductPage id="5"/></Route>
       <Route exact path="/electricguitars"><ElectricGuitars/></Route>
       <Route exact path="/acousticguitars"><AcousticGuitars/></Route>
       <Route exact path="/pianos"><Pianos/></Route>
