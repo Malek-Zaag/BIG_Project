@@ -9,6 +9,8 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault()
     const form = document.getElementById("form")
+    const emailerror = document.getElementById("email-error")
+    const passworderror = document.getElementById("password-error")
     fetch("http://localhost:4000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -17,9 +19,16 @@ const Login = () => {
         password: form.password.value,
       })
     })
-    .then(res=> res.json())
-    .then(result =>  history.push("/"))
-    .catch( err => console.log(err))
+      .then(res => {
+        if (res.ok) { history.push("/") }
+        return res.json()
+      })
+      .then(result => {
+        const data = result
+        emailerror.textContent = data.email
+        passworderror.textContent = data.password
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -27,9 +36,10 @@ const Login = () => {
       <Navbar></Navbar>
       <form id="form">
         <Container sx={{ position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
-          <TextField id="email" name="email" fullWidth sx={{ marginBottom: "75px" }} label="Email" variant="outlined" />
-          <br />
-          <TextField fullWidth name="password" label="Password" variant="outlined" />
+          <TextField id="email" name="email" fullWidth  label="Email" variant="outlined" />
+          <div id="email-error" style={{ marginBottom: "75px",color: "#FF1493" }}></div>
+          <TextField fullWidth name="password" label="Password" type="password" variant="outlined" />
+          <div id="password-error" style={{ color: "#FF1493" }}></div>
           <a href="/signup" style={{ position: "absolute", right: "20px", bottom: "10px" }}>Don't have an account? Sign up</a>
           <Button variant="contained" onClick={handleClick} style={{ position: "absolute", left: "20px", bottom: "10px" }} color="success" >Login</Button>
         </Container>

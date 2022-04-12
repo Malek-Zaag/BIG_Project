@@ -20,7 +20,14 @@ const handleErrors = (err) => {
         })
         return error
     }
-
+    if (err.message.includes("We cannot find this email")){
+        error.email="Incorrect email please try again"
+        return error
+    }
+    if (err.message.includes("Incorrect password")){
+        error.password="Incorrect password please try again"
+        return error
+    }
 }
 
 module.exports.singup = (req, res) => {
@@ -44,12 +51,13 @@ module.exports.login = async (req, res) => {
     try {
         const user = await User.login(email, password)
         if (user) {
-            res.status(400).send(user)
+            res.status(200).send(user)
         }
     }
     catch (err) {
         const errors=handleErrors(err)
-        res.status(400).json({errors})
+        console.log(errors)
+        res.status(400).send(errors)
     }
 
 }
