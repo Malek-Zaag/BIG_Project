@@ -34,7 +34,8 @@ module.exports.singup = (req, res) => {
         })
         .catch((err) => {
             const errors = handleErrors(err)
-            res.status(400).json({ errors })
+            console.log(errors)
+            res.status(400).send(errors)
         })
 }
 
@@ -43,12 +44,12 @@ module.exports.login = async (req, res) => {
     try {
         const user = await User.login(email, password)
         if (user) {
-            res.status(200).send(user)
+            res.status(400).send(user)
         }
     }
     catch (err) {
         const errors=handleErrors(err)
-        res.status(200).send({errors})
+        res.status(400).json({errors})
     }
 
 }

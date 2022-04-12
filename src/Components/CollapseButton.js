@@ -5,12 +5,11 @@ import styles from './Style.module.css'
 const CollapseButton = () => {
 
     return (
-
-        <div class={styles.dropdown}>
-            <div class={styles.dropbtn}>Shop</div>
-            <div class={styles.dropdowncontent}>
-                <Typography variant='body1' fontWeight="bold" fontFamily="Fredoka">
-                    <div class={styles.dropdwonstyle}>
+        <Typography variant='body1' fontWeight="bold" fontFamily="Fredoka">
+            <div className={styles.dropdown}>
+                <div className={styles.dropbtn}>Shop</div>
+                <div className={styles.dropdowncontent}>
+                    <div className={styles.dropdwonstyle}>
                         <a href="/electricguitars">Electric Guitars</a>
                         <a href="/acousticguitars">Acoustic Guitars</a>
                         <a href="/bassguitars">Bass Guitars</a>
@@ -18,9 +17,9 @@ const CollapseButton = () => {
                         <a href="/pianos">Piaons & Keyboards</a>
                         <a href="/djequipment">DJ Equipment</a>
                     </div>
-                </Typography>
+                </div>
             </div>
-        </div>
+        </Typography>
 
     )
 }

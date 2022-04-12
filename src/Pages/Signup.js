@@ -9,10 +9,10 @@ const Signup = () => {
     const handleClick = (e) => {
         e.preventDefault()
         const form = document.getElementById("form")
-        const emailerror= document.getElementById("email-error")
-        const passworderror= document.getElementById("password-error")
-        const firstnamerror= document.getElementById("fname-error")
-        const lastnameerror= document.getElementById("lname-error")
+        const emailerror = document.getElementById("email-error")
+        const passworderror = document.getElementById("password-error")
+        const firstnameerror = document.getElementById("fname-error")
+        const lastnameerror = document.getElementById("lname-error")
 
         fetch("http://localhost:4000/signup", {
             method: "POST",
@@ -26,39 +26,41 @@ const Signup = () => {
             })
         })
             .then((res) => {
-                res.json()
-                //if (res.ok) { history.push('/login') }
+                if (res.ok) { history.push('/login') }
+                return res.json()
             })
             .then(result => {
-                const data=result
-                console.log(data)
+                const data = result
+                emailerror.textContent = data.email
+                passworderror.textContent = data.password
+                firstnameerror.textContent = data.firstname
+                lastnameerror.textContent = data.lastname
             })
             .catch((err) => {
-                
-                
+                console.log(err)
             })
 
     }
     return (
         <div>
             <Navbar></Navbar>
-            <Container style={{ position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
+            <Container style={{ zIndex: "0", position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
                 <form id="form" >
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6}>
-                            <TextField id="outlined-basic" name='firstname' label="First Name" variant="outlined" fullWidth />
+                            <TextField name='firstname' label="First Name" variant="outlined" fullWidth />
                             <div id="fname-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField id="outlined-basic" name='lastname' label="Last Name" variant="outlined" fullWidth />
+                            <TextField name='lastname' label="Last Name" variant="outlined" fullWidth />
                             <div id="lname-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} >
-                            <TextField id="outlined-basic" name='email' label="Email" variant="outlined" fullWidth />
+                            <TextField name='email' label="Email" variant="outlined" fullWidth />
                             <div id="email-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12} >
-                            <TextField id="outlined-basic" name='password' label="Password" variant="outlined" fullWidth />
+                            <TextField name='password' label="Password" type="password" variant="outlined" fullWidth />
                             <div id="password-error" style={{ color: "#FF1493" }}></div>
                         </Grid>
                         <Grid item xs={12}>

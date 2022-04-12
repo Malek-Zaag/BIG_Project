@@ -5,11 +5,11 @@ const md5 = require("md5")
 const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
-        required: [true, "please enter a firstname"]
+        required: [true, "please enter a first name"]
     },
     lastname: {
         type: String,
-        required: [true, "please enter a lastname"]
+        required: [true, "please enter a last name"]
     },
     email: {
         type: String,
@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema({
 })
 userSchema.pre('save', async function (next) {
     this.password = md5(this.password)
-    console.log(this.password)
     next();
 })
 
