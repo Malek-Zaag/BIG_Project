@@ -2,9 +2,11 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid
 import React, { useEffect, useState } from 'react'
 import AdminAvatar from '../Components/AdminAvatar'
 import Navbar from '../Components/Navbar'
+import { useHistory } from 'react-router-dom'
 
 const DjEquipment = () => {
     const [products, setProducts] = useState([])
+    const history = useHistory()
     useEffect(() => {
         fetch("http://localhost:4000/products")
             .then(res => res.json())
@@ -16,7 +18,7 @@ const DjEquipment = () => {
             <Navbar></Navbar>
             <AdminAvatar></AdminAvatar>
             <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
-                {products.filter(product => product.category==="DJ Equipment").map(product => (
+                {products.filter(product => product.category === "DJ Equipment").map(product => (
                     <Grid item xs={12} md={3}>
                         <Card id={product._id}>
                             <CardActionArea>
@@ -46,7 +48,7 @@ const DjEquipment = () => {
                                     </div>
                                 </CardContent>
                                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                                    <Button variant='outlined' align color="success">Add TO Cart</Button>
+                                    <Button onClick={() => { history.push(`/products/${product._id}`) }} variant='outlined' align color="success">See Product</Button>
                                 </CardActions>
                             </CardActionArea>
                         </Card>
