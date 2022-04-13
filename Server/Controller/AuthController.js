@@ -1,6 +1,7 @@
 const User = require("../Model/User")
 const jwt = require("jsonwebtoken")
 const Product = require("../Model/Product")
+const { requireAuth } = require("../middleware/Middleware")
 
 const maxAge = 700 * 24 * 60 * 60
 const createToken = (id) => {
@@ -88,10 +89,28 @@ module.exports.create_product = (req, res) => {
         .catch((err) => console.log(err))
 }
 module.exports.get_product = (req, res) => {
-    const id = req.params.id
-    Product.findById(id)
-        .then(result => res.send(result))
-        .catch(err => console.log(err))
+    const token = req.cookies.jwt
+    if (token) {
+        jwt.verify(token, "secretkey", (err, decodedtoken) => {
+            if (err) {
+                console.log(err)
+                res.status(400).send("error")
+            }
+            else {
+                console.log(decodedtoken)
+                const id = req.params.id
+                Product.findById(id)
+                    .then(result => res.send(result))
+                    .catch(err => console.log(err))
+            }
+        })
+
+    }
+    else {
+        res.status(400).send("error")
+    }
+
+
 }
 module.exports.products = (req, res) => {
     Product.find()
@@ -99,13 +118,29 @@ module.exports.products = (req, res) => {
         .catch(err => console.log(err))
 }
 module.exports.get_product_page = (req, res) => {
-    const page = req.params.page;
-    console.log(page)
-    const start = (page - 1) * 8  //position to start slicing from which means showing from
-    const end = start + 8
-    Product.find()
-        .then(result => { res.send(result.slice(start, end)) })
-        .catch(err => console.log(err))
+    const token = req.cookies.jwt
+    if (token) {
+        jwt.verify(token, "secretkey", (err, decodedtoken) => {
+            if (err) {
+                console.log(err)
+                res.status(400)
+            }
+            else {
+                console.log(decodedtoken)
+                const page = req.params.page;
+                const start = (page - 1) * 8  //position to start slicing from which means showing from
+                const end = start + 8
+                Product.find()
+                    .then(result => { res.send(result.slice(start, end)) })
+                    .catch(err => console.log(err))
+            }
+        })
+
+    }
+    else {
+        res.status(400).send("error")
+    }
+
 }
 
 module.exports.delete_product = (req, res) => {

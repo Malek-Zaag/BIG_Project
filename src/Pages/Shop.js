@@ -6,11 +6,18 @@ import { useHistory } from 'react-router-dom'
 const Shop = () => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
-  const history=useHistory()
+  const history = useHistory()
   const fetchProductsfromPage = (page) => {
     const endpoint = `http://localhost:4000/product/${page}`
     fetch(endpoint)
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        else {
+          history.push('/login')
+        }
+      })
       .then(result => { setProducts(result); console.log(result) })
       .catch(err => console.log(err))
   }
@@ -18,12 +25,12 @@ const Shop = () => {
     setPage(p)
     console.log(page)
   }
-  useEffect( ()=>{
+  useEffect(() => {
     fetchProductsfromPage(page)
-  }, [page])
+  })
 
   return (
-    <div style={{position: "relative", paddingBottom: "100px"}}>
+    <div style={{ position: "relative", paddingBottom: "100px" }}>
       <Navbar></Navbar>
       <AdminAvatar></AdminAvatar>
       <Grid sx={{ paddingTop: "20px" }} container spacing={3}>
@@ -57,15 +64,15 @@ const Shop = () => {
                   </div>
                 </CardContent>
                 <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-                  <Button onClick={()=>{history.push(`/products/${product._id}`) }} variant='outlined' align color="success">See Product</Button>
+                  <Button onClick={() => { history.push(`/products/${product._id}`) }} variant='outlined' align color="success">See Product</Button>
                 </CardActions>
               </CardActionArea>
             </Card>
           </Grid>
         ))}
       </Grid>
-      <footer  style={{position: "absolute",width: "100%",left: "0",bottom: "0",display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-        <Pagination  count={10} page={page} onChange={handleChange} />
+      <footer style={{ position: "absolute", width: "100%", left: "0", bottom: "0", display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+        <Pagination count={10} page={page} onChange={handleChange} />
       </footer>
     </div>
   )

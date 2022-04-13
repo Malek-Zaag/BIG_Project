@@ -1,5 +1,6 @@
 const {Router}=require("express")
-const AuthController=require("../Controller/AuthController")
+const AuthController=require("../Controller/AuthController");
+const { requireAuth } = require("../middleware/Middleware");
 
 const router=Router();
 
@@ -20,9 +21,9 @@ router.delete("/members/:id", AuthController.delete_member)
 
 router.post("/products", AuthController.create_product)
 
-router.get("/products", AuthController.products)
+router.get("/products",AuthController.products)
 
-router.get("/products/:id", AuthController.get_product)
+router.get("/products/:id",AuthController.get_product)
 
 router.get("/product/:page", AuthController.get_product_page)
 
