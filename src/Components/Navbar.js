@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, Badge, IconButton } from '@mui/material'
 import { React, useState, useEffect } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import logo from '../images/logo.png'
@@ -6,6 +6,7 @@ import classes from "./Navbar.module.css"
 import CollapseButton from './CollapseButton';
 import { useHistory } from "react-router-dom";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
@@ -67,7 +68,11 @@ const Navbar = () => {
         <div>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart"><IconButton aria-label="cart">
+            <Badge color="secondary" badgeContent={0} showZero>
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton></Button>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="logout">Logout</Button>
         </div>
       </div >
