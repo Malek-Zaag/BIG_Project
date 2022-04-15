@@ -7,11 +7,16 @@ const Shop = () => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
   const history = useHistory()
-  const fetchProductsfromPage = (page) => {
+  const handleChange = (e, p) => {
+    setPage(p)
+    console.log(page)
+  }
+  useEffect(() => {
     const endpoint = `http://localhost:4000/product/${page}`
     fetch(endpoint)
       .then(res => {
         if (res.ok) {
+          console.log(res)
           return res.json()
         }
         else {
@@ -20,14 +25,7 @@ const Shop = () => {
       })
       .then(result => { setProducts(result); console.log(result) })
       .catch(err => console.log(err))
-  }
-  const handleChange = (e, p) => {
-    setPage(p)
-    console.log(page)
-  }
-  useEffect(() => {
-    fetchProductsfromPage(page)
-  })
+  }, [page])
 
   return (
     <div style={{ position: "relative", paddingBottom: "100px" }}>

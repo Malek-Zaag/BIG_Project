@@ -23,21 +23,27 @@ const Signup = () => {
                 email: form.email.value,
                 password: form.password.value,
                 gender: form.gender.value,
-            })
+            }),
+            credentials: 'include'
         })
             .then((res) => {
-                if (res.ok) { history.push('/login') }
                 return res.json()
             })
             .then(result => {
                 const data = result
-                emailerror.textContent = data.email
-                passworderror.textContent = data.password
-                firstnameerror.textContent = data.firstname
-                lastnameerror.textContent = data.lastname
+                console.log(data)
+                if (result._id) {
+                    console.log("this is a redirect")
+                }
+                else {
+                    emailerror.textContent = data.email
+                    passworderror.textContent = data.password
+                    firstnameerror.textContent = data.firstname
+                    lastnameerror.textContent = data.lastname
+                }
             })
-            .catch((err) => {
-                console.log(err)
+            .catch((error) => {
+                console.log(error)
             })
 
     }

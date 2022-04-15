@@ -1,7 +1,7 @@
 const User = require("../Model/User")
 const jwt = require("jsonwebtoken")
 const Product = require("../Model/Product")
-const { requireAuth } = require("../middleware/Middleware")
+
 
 const maxAge = 700 * 24 * 60 * 60
 const createToken = (id) => {
@@ -38,12 +38,12 @@ module.exports.singup = (req, res) => {
             console.log("done posting new user to database");
             const token = createToken(user._id);
             res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-            res.status(200).send("done posting");
+            res.status(200).send(user);
         })
         .catch((err) => {
             const errors = handleErrors(err)
             console.log(errors)
-            res.status(400).send(errors)
+            res.status(200).send(errors)
         })
 }
 
@@ -57,8 +57,7 @@ module.exports.login = async (req, res) => {
     }
     catch (err) {
         const errors = handleErrors(err)
-        console.log(errors)
-        res.status(400).send(errors)
+        res.status(200).send(errors)
     }
 
 }
@@ -123,7 +122,7 @@ module.exports.get_product_page = (req, res) => {
         jwt.verify(token, "secretkey", (err, decodedtoken) => {
             if (err) {
                 console.log(err)
-                res.status(400)
+                res.status(400).send("error")
             }
             else {
                 console.log(decodedtoken)
@@ -135,7 +134,6 @@ module.exports.get_product_page = (req, res) => {
                     .catch(err => console.log(err))
             }
         })
-
     }
     else {
         res.status(400).send("error")

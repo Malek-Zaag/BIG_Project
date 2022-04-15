@@ -1,17 +1,16 @@
-const {Router}=require("express")
-const AuthController=require("../Controller/AuthController");
-const { requireAuth } = require("../middleware/Middleware");
+const { Router } = require("express")
+const AuthController = require("../Controller/AuthController");
 
-const router=Router();
+const router = Router();
 
 
-router.get('/', (req,res)=>{
+router.get('/', (req, res) => {
     res.send("hello user!!!")
-}) 
+})
 
-router.post('/signup',AuthController.singup )
+router.post('/signup', AuthController.singup)
 
-router.post('/login',AuthController.login)
+router.post('/login', AuthController.login)
 
 router.get('/members', AuthController.members)
 
@@ -21,12 +20,12 @@ router.delete("/members/:id", AuthController.delete_member)
 
 router.post("/products", AuthController.create_product)
 
-router.get("/products",AuthController.products)
+router.get("/products", AuthController.products)
 
-router.get("/products/:id",AuthController.get_product)
+router.get("/products/:id", AuthController.get_product)
 
 router.get("/product/:page", AuthController.get_product_page)
 
 router.delete("/products/:id", AuthController.delete_product)
 
-module.exports=router;
+module.exports = router;

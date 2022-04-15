@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar'
 import { useHistory } from 'react-router-dom'
 import AdminAvatar from '../Components/AdminAvatar'
 
+
 const Login = () => {
   const history = useHistory()
   const handleClick = (e) => {
@@ -16,19 +17,25 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: form.email.value,
-        password: form.password.value,
-      })
+        password: form.password.value
+      }),
+      credentials: 'include'
     })
       .then(res => {
-        if (res.ok) { history.push("/") }
         return res.json()
       })
       .then(result => {
-        const data = result
-        emailerror.textContent = data.email
-        passworderror.textContent = data.password
+        if (result._id) {
+          //history.push('/')
+          console.log("this is a redirect")
+        }
+        else {
+          const data = result
+          emailerror.textContent = data.email
+          passworderror.textContent = data.password
+        }
       })
-      .catch(err => console.log(err))
+      .catch(error => console.log(error))
   }
 
   return (
@@ -36,8 +43,8 @@ const Login = () => {
       <Navbar></Navbar>
       <form id="form">
         <Container sx={{ position: "relative", backgroundColor: "#D0D0D0", marginTop: "100px", padding: "100px", borderRadius: "16px" }}>
-          <TextField id="email" name="email" fullWidth  label="Email" variant="outlined" />
-          <div id="email-error" style={{ marginBottom: "75px",color: "#FF1493" }}></div>
+          <TextField id="email" name="email" fullWidth label="Email" variant="outlined" />
+          <div id="email-error" style={{ marginBottom: "75px", color: "#FF1493" }}></div>
           <TextField fullWidth name="password" label="Password" type="password" variant="outlined" />
           <div id="password-error" style={{ color: "#FF1493" }}></div>
           <a href="/signup" style={{ position: "absolute", right: "20px", bottom: "10px" }}>Don't have an account? Sign up</a>
