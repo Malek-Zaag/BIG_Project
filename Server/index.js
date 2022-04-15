@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 4000;
 var cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const checkUser = require("./Middleware/middleware");
 
 const app = express()
 const corsOptions = {
@@ -26,4 +27,5 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 //routes
+app.get('*', checkUser)
 app.use(route)

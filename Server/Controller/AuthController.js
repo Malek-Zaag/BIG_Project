@@ -37,7 +37,7 @@ module.exports.singup = (req, res) => {
         .then((result) => {
             console.log("done posting new user to database");
             const token = createToken(user._id);
-            res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.cookie("jwt", token, { maxAge: maxAge * 1000 });
             res.status(200).send(user);
         })
         .catch((err) => {
@@ -53,7 +53,7 @@ module.exports.login = async (req, res) => {
         const user = await User.login(email, password)
         if (user) {
             const token = createToken(user._id);
-            res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+            res.cookie("jwt", token, { maxAge: maxAge * 1000 });
             res.status(200).send(user)
         }
     }
@@ -149,4 +149,7 @@ module.exports.delete_product = (req, res) => {
         .catch(err => console.log(err))
 }
 
-
+module.exports.logout = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 })
+    res.redirect('/')
+}

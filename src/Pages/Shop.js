@@ -22,7 +22,7 @@ const Shop = () => {
         else {
           history.push('/login')
         }
-      }, [page])
+      }, [])
       .then(result => { setProducts(result); setLoading(false) })
       .catch(err => console.log(err))
   })

@@ -47,31 +47,57 @@ const Navbar = () => {
       </>
     )
   }
-
-  return (
-    <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
-      <div className={classes.logo} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "200px" }} src={logo} alt="logo"></img></a>
-        <div style={{ width: "15vw" }}>
-          <ReactSearchAutocomplete
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            formatResult={formatResult}
-          />
+  if (document.cookie) {
+    return (
+      <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
+        <div className={classes.logo} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "200px" }} src={logo} alt="logo"></img></a>
+          <div style={{ width: "15vw" }}>
+            <ReactSearchAutocomplete
+              items={items}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              onFocus={handleOnFocus}
+              autoFocus
+              formatResult={formatResult}
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
-        <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
-        <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
-        <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="login">Login</Button>
-      </div>
-    </div >
-  )
+        <div>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="logout">Logout</Button>
+        </div>
+      </div >
+    )
+  }
+  else
+    return (
+      <div className={classes.nav} style={{ backgroundColor: "#0000CD", display: "flex", alignItems: "center", justifyContent: "space-between", }}>
+        <div className={classes.logo} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <a href="/"><img style={{ marginTop: "-35px", marginBottom: "-35px", width: "200px", height: "200px" }} src={logo} alt="logo"></img></a>
+          <div style={{ width: "15vw" }}>
+            <ReactSearchAutocomplete
+              items={items}
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              onFocus={handleOnFocus}
+              autoFocus
+              formatResult={formatResult}
+            />
+          </div>
+        </div>
+        <div>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="login">Login</Button>
+        </div>
+      </div >
+    )
 }
 
 export default Navbar

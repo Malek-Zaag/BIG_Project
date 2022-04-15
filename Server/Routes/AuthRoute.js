@@ -28,4 +28,6 @@ router.get("/product/:page", AuthController.get_product_page)
 
 router.delete("/products/:id", AuthController.delete_product)
 
+router.get('/logout', AuthController.logout)
+
 module.exports = router;
