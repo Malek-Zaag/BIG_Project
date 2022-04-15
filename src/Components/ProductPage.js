@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Grid, Button, Typography } from "@mui/material"
+import { useHistory } from 'react-router-dom'
 
 const ProductPage = ({ id }) => {
 
     const [product, setProduct] = useState({})
     const [Loading, setLoading] = useState(true)
+    const history = useHistory()
     useEffect(() => {
         const endpoint = `http://localhost:4000/products/${id}`
-        fetch(endpoint)
-            .then(res => res.json())
+        fetch(endpoint, { credentials: 'include' })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                }
+                else {
+                    history.push('/login')
+                }
+            })
             .then(result => {
                 setProduct(result)
                 setLoading(false)
             })
             .catch(err => console.log(err))
-    }, [id])
+    })
     if (Loading) return (
         <div>
             <Navbar></Navbar>

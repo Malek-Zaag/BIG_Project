@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 const Shop = () => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
   const history = useHistory()
   const handleChange = (e, p) => {
     setPage(p)
@@ -13,21 +14,23 @@ const Shop = () => {
   }
   useEffect(() => {
     const endpoint = `http://localhost:4000/product/${page}`
-    fetch(endpoint)
+    fetch(endpoint, { credentials: 'include' })
       .then(res => {
         if (res.ok) {
-          console.log(res)
           return res.json()
         }
         else {
           history.push('/login')
         }
-      })
-      .then(result => { setProducts(result); console.log(result) })
+      }, [page])
+      .then(result => { setProducts(result); setLoading(false) })
       .catch(err => console.log(err))
-  }, [page])
-
-  return (
+  })
+  if (loading) return <div>
+    <Navbar></Navbar>
+    <div>Loading ....</div>
+  </div>
+  else return (
     <div style={{ position: "relative", paddingBottom: "100px" }}>
       <Navbar></Navbar>
       <AdminAvatar></AdminAvatar>

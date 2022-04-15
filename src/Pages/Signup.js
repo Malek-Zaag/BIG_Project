@@ -31,9 +31,8 @@ const Signup = () => {
             })
             .then(result => {
                 const data = result
-                console.log(data)
                 if (result._id) {
-                    console.log("this is a redirect")
+                    history.push('/login')
                 }
                 else {
                     emailerror.textContent = data.email

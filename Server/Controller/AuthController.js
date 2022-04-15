@@ -52,6 +52,8 @@ module.exports.login = async (req, res) => {
     try {
         const user = await User.login(email, password)
         if (user) {
+            const token = createToken(user._id);
+            res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
             res.status(200).send(user)
         }
     }
@@ -87,16 +89,16 @@ module.exports.create_product = (req, res) => {
         .then((res) => { console.log(product); console.log("product saved to db") })
         .catch((err) => console.log(err))
 }
+
+
 module.exports.get_product = (req, res) => {
     const token = req.cookies.jwt
     if (token) {
         jwt.verify(token, "secretkey", (err, decodedtoken) => {
             if (err) {
-                console.log(err)
-                res.status(400).send("error")
+                res.status(400).send(err)
             }
             else {
-                console.log(decodedtoken)
                 const id = req.params.id
                 Product.findById(id)
                     .then(result => res.send(result))
@@ -116,16 +118,16 @@ module.exports.products = (req, res) => {
         .then(result => res.send(result))
         .catch(err => console.log(err))
 }
+
+
 module.exports.get_product_page = (req, res) => {
     const token = req.cookies.jwt
     if (token) {
         jwt.verify(token, "secretkey", (err, decodedtoken) => {
             if (err) {
-                console.log(err)
                 res.status(400).send("error")
             }
             else {
-                console.log(decodedtoken)
                 const page = req.params.page;
                 const start = (page - 1) * 8  //position to start slicing from which means showing from
                 const end = start + 8

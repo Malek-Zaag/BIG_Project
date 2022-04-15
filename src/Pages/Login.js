@@ -26,8 +26,7 @@ const Login = () => {
       })
       .then(result => {
         if (result._id) {
-          //history.push('/')
-          console.log("this is a redirect")
+          history.push('/')
         }
         else {
           const data = result
