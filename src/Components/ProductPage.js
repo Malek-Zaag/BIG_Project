@@ -24,7 +24,7 @@ const ProductPage = ({ id }) => {
                 setLoading(false)
             })
             .catch(err => console.log(err))
-    })
+    }, [history, id])
     if (Loading) return (
         <div>
             <Navbar></Navbar>

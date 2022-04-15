@@ -115,7 +115,7 @@ module.exports.get_product = (req, res) => {
 }
 module.exports.products = (req, res) => {
     Product.find()
-        .then(result => res.send(result))
+        .then(result => { res.send(result) })
         .catch(err => console.log(err))
 }
 

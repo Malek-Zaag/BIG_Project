@@ -15,37 +15,34 @@ const Navbar = () => {
   const [items, setItems] = useState([]);
   const history = useHistory()
   useEffect(() => {
+    let isMounted = true;
     fetch("http://localhost:4000/products")
       .then(res => res.json())
-      .then(result => setItems(result))
+      .then(result => { if (isMounted) setItems(result) })
       .catch(err => console.log(err))
+    return () => { isMounted = false }
   }, [])
   const handleOnHover = (result) => {
     // the item hovered
-    console.log(result)
   }
 
   const handleOnSelect = (item) => {
     // the item selected
-
     console.log(item)
     history.push(`/products/${item._id}`)
+    window.location.reload()
   }
 
   const handleOnFocus = () => {
-    console.log('Focused')
   }
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
-    console.log(string, results)
   }
 
   const formatResult = (item) => {
     return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left' }}>{item.name}</span>
-      </>
+      <span key={item._id} style={{ display: 'block', textAlign: 'left' }}>{item.name}</span>
     )
   }
   if (document.cookie) {
