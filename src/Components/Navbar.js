@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const number = useSelector((state) => state.counterReducer.count)
-  console.log(number)
   const [items, setItems] = useState([]);
   const history = useHistory()
   useEffect(() => {

@@ -7,10 +7,23 @@ import mastercard from '../images/icons8-mastercard-credit-card-48.png'
 import amex from '../images/icons8-american-express-48.png'
 import paypal from '../images/icons8-paypal-an-online-payments-system-operating-worldwide-48.png'
 import visa from '../images/icons8-visa-48.png'
+import ClearIcon from '@mui/icons-material/Clear';
+import { useSelector, useDispatch } from 'react-redux';
+import { removevalue } from '../redux/value'
+import { remove } from '../redux/cartAdder'
+import { decrement } from '../redux/counter'
 
 const Cart = () => {
-  const [totalValue, setTotalValue] = useState(0)
+  let totalValue = useSelector((state) => state.valueReducer.value)
+  const items = useSelector((state) => state.itemReducer.items)
+  const dispatch = useDispatch()
   const history = useHistory()
+  const totalSum = (items) => {
+    let sum = 0
+    items.map(item => sum += item.price)
+    return sum
+  }
+  totalValue = totalSum(items)
   if (document.cookie)
     return (
       <div style={{ backgroundColor: "#DCDCDC" }}>
@@ -21,39 +34,54 @@ const Cart = () => {
               <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>MY ITEMS</div>
               <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
                 <hr />
-                <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
-                  SUB-TOTAL {totalValue}$
-                </div>
+                <ul style={{}}>
+                  {items.map(item => (
+                    <li style={{ display: "flex", }}>
+                      <img src={visa} alt="img"></img>
+                      <div>
+                        <h1>{item.price} $</h1>
+                        <div>{item.description}</div>
+                        <Button variant='text' color='error' onClick={() => { dispatch(removevalue(item.price)); dispatch(remove(item)); dispatch(decrement()) }} endIcon=<ClearIcon />></Button>
+                    </div>
+
+
+                    </li>
+
+                  ))}
+              </ul>
+              <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
+                SUB-TOTAL {totalValue}$
               </div>
-            </Grid>
-            <Grid style={{ backgroundColor: "white" }} item xs={12} sm={6} >
-              <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>TOTAL</div>
-              <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
-                <hr />
-                <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{totalValue} $</span></div>
-                <br />
-                <div style={{ display: "flex", justifyContent: "space-between" }}>Delivery (free)<InfoOutlinedIcon></InfoOutlinedIcon></div>
-                <br />
-                <hr />
-                <br />
-                <Button size="large" fullWidth variant="contained" color="success">CHECKOUT</Button>
-                <br />
-                <br />
-                <div>WE ACCEPT:</div>
-                <br />
-                <div><img src={mastercard} alt='mastercard' /><img src={visa} alt='visa' /><img src={amex} alt='amex' /><img src={paypal} alt='paypal' /></div>
-              </div>
-            </Grid>
+            </div>
           </Grid>
-        </div>
-      </div>
+          <Grid style={{ backgroundColor: "white" }} item xs={12} sm={6} >
+            <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>TOTAL</div>
+            <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
+              <hr />
+              <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{totalValue} $</span></div>
+              <br />
+              <div style={{ display: "flex", justifyContent: "space-between" }}>Delivery (free)<InfoOutlinedIcon></InfoOutlinedIcon></div>
+              <br />
+              <hr />
+              <br />
+              <Button size="large" fullWidth variant="contained" color="success">CHECKOUT</Button>
+              <br />
+              <br />
+              <div>WE ACCEPT:</div>
+              <br />
+              <div><img src={mastercard} alt='mastercard' /><img src={visa} alt='visa' /><img src={amex} alt='amex' /><img src={paypal} alt='paypal' /></div>
+            </div>
+          </Grid>
+        </Grid >
+      </div >
+      </div >
     )
   else {
-    history.push('/login')
-    return (
-      <div></div>
-    )
-  }
+  history.push('/login')
+  return (
+    <div></div>
+  )
+}
 }
 
 export default Cart
