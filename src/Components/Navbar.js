@@ -7,11 +7,14 @@ import CollapseButton from './CollapseButton';
 import { useHistory } from "react-router-dom";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux'
 
 
 
 
 const Navbar = () => {
+  const number = useSelector((state) => state.counterReducer.count)
+  console.log(number)
   const [items, setItems] = useState([]);
   const history = useHistory()
   useEffect(() => {
@@ -66,7 +69,7 @@ const Navbar = () => {
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart"><IconButton aria-label="cart">
-            <Badge color="secondary" badgeContent={0} showZero>
+            <Badge color="secondary" badgeContent={number} showZero>
               <ShoppingCartIcon />
             </Badge>
           </IconButton></Button>

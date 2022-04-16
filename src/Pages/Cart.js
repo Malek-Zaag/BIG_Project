@@ -9,7 +9,7 @@ import paypal from '../images/icons8-paypal-an-online-payments-system-operating-
 import visa from '../images/icons8-visa-48.png'
 
 const Cart = () => {
-  const [count, setCount] = useState(0)
+  const [totalValue, setTotalValue] = useState(0)
   const history = useHistory()
   if (document.cookie)
     return (
@@ -22,7 +22,7 @@ const Cart = () => {
               <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
                 <hr />
                 <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
-                  SUB-TOTAL {count}$
+                  SUB-TOTAL {totalValue}$
                 </div>
               </div>
             </Grid>
@@ -30,7 +30,7 @@ const Cart = () => {
               <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>TOTAL</div>
               <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
                 <hr />
-                <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{count} $</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{totalValue} $</span></div>
                 <br />
                 <div style={{ display: "flex", justifyContent: "space-between" }}>Delivery (free)<InfoOutlinedIcon></InfoOutlinedIcon></div>
                 <br />

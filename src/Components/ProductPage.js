@@ -3,15 +3,18 @@ import Navbar from './Navbar'
 import { Grid, Button, Typography } from "@mui/material"
 import { useHistory } from 'react-router-dom'
 import { add } from '../redux/cartAdder'
-import { useSelector, useDispatch } from "react-redux"
+import { increment } from '../redux/counter'
+import { useDispatch, useSelector } from "react-redux"
 
 const ProductPage = ({ id }) => {
-    const { items } = useSelector((state) => state.cartAdder)
+    const number = useSelector((state) => state.counterReducer.count)
+    const items = useSelector((state) => state.itemReducer.items)
     const dispatch = useDispatch()
     const [product, setProduct] = useState({})
     const [Loading, setLoading] = useState(true)
     const history = useHistory()
     useEffect(() => {
+        let isMounted = true;
         const endpoint = `http://localhost:4000/products/${id}`
         fetch(endpoint, { credentials: 'include' })
             .then(res => {
@@ -23,14 +26,17 @@ const ProductPage = ({ id }) => {
                 }
             })
             .then(result => {
-                setProduct(result)
-                setLoading(false)
+                if (isMounted) {
+                    setProduct(result)
+                    setLoading(false)
+                }
             })
             .catch(err => console.log(err))
+        return () => { isMounted = false }
     }, [history, id])
     if (Loading) return (
         <div>
-            <Navbar></Navbar>
+            <Navbar>{window.location.reload}</Navbar>
             <div>Loading ....</div>
         </div>
     )
@@ -48,7 +54,7 @@ const ProductPage = ({ id }) => {
                         <div style={{ color: "green" }}>{product.stock}</div>
                         <div>{product.price}$</div>
                         <div>
-                            <Button variant="contained" onClick={() => { }}>
+                            <Button variant="contained" onClick={() => { dispatch(add(product)); dispatch(increment()) }}>
                                 Add to Card
                             </Button>
                         </div>
