@@ -34,14 +34,16 @@ const Cart = () => {
               <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>MY ITEMS</div>
               <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
                 <hr />
-                <ul style={{}}>
+                <ul>
                   {items.map(item => (
                     <li style={{ display: "flex", }}>
-                      <img src={visa} alt="img"></img>
-                      <div>
-                        <h1>{item.price} $</h1>
-                        <div>{item.description}</div>
-                        <Button variant='text' color='error' onClick={() => { dispatch(removevalue(item.price)); dispatch(remove(item)); dispatch(decrement()) }} endIcon=<ClearIcon />></Button>
+                      <img src={item.image} style={{ width: "200px", height: "200px" }} alt="img"></img>
+                      <div style={{ width: "100%", display: "flex", justifyContent: "space-between", position: "relative" }}>
+                        <div>
+                          <h1>{item.price} $</h1>
+                          <div>{item.description}</div>
+                        </div>
+                        <Button style={{ position: "absolute", right: "10%" }} variant='text' color='error' onClick={() => { dispatch(removevalue(item.price)); dispatch(remove(item)); dispatch(decrement()) }} endIcon=<ClearIcon />></Button>
                     </div>
 
 
