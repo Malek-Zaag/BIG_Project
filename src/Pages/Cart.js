@@ -21,8 +21,9 @@ const Cart = () => {
               <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>MY ITEMS</div>
               <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
                 <hr />
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>SUB-TOTAL <span>{count} $</span> </div>        </div>
+                <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
+                  SUB-TOTAL {count}$
+                </div>
               </div>
             </Grid>
             <Grid style={{ backgroundColor: "white" }} item xs={12} sm={6} >

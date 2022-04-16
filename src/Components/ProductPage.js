@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Grid, Button, Typography } from "@mui/material"
 import { useHistory } from 'react-router-dom'
+import { add } from '../redux/cartAdder'
+import { useSelector, useDispatch } from "react-redux"
 
 const ProductPage = ({ id }) => {
-
+    const { items } = useSelector((state) => state.cartAdder)
+    const dispatch = useDispatch()
     const [product, setProduct] = useState({})
     const [Loading, setLoading] = useState(true)
     const history = useHistory()
@@ -45,7 +48,7 @@ const ProductPage = ({ id }) => {
                         <div style={{ color: "green" }}>{product.stock}</div>
                         <div>{product.price}$</div>
                         <div>
-                            <Button variant="contained">
+                            <Button variant="contained" onClick={() => { }}>
                                 Add to Card
                             </Button>
                         </div>
