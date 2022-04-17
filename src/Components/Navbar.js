@@ -66,13 +66,13 @@ const Navbar = () => {
         </div>
         <div>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart"><IconButton aria-label="cart">
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="/cart"><IconButton aria-label="cart">
             <Badge color="secondary" badgeContent={number} showZero>
               <ShoppingCartIcon />
             </Badge>
           </IconButton></Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="logout">Logout</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/logout">Logout</Button>
         </div>
       </div >
     )
@@ -96,9 +96,9 @@ const Navbar = () => {
         </div>
         <div>
           <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/">Home</Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="cart">Cart</Button>
-          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="login">Login</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/shop" endIcon={<KeyboardArrowDownIcon />}><CollapseButton></CollapseButton></Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="success" size="medium" href="/cart">Cart</Button>
+          <Button variant="contained" style={{ margin: "10px 35px 10px 35px" }} color="warning" size="medium" href="/login">Login</Button>
         </div>
       </div >
     )

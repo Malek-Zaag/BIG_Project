@@ -8,8 +8,8 @@ const AdminProducts = () => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
 
-  const fetchProductsfromPage = (page) => {
-    const endpoint = `http://localhost:4000/product/${page}`
+  const fetchProductsfromPage = () => {
+    const endpoint = `http://localhost:4000/product`
     fetch(endpoint)
       .then(res => res.json())
       .then(result => { setProducts(result); console.log(result) })
@@ -131,9 +131,9 @@ const AdminProducts = () => {
           </Grid>
         </div>
       </Typography>
-      <footer style={{ position: "absolute", width: "100%", left: "0", bottom: "0", display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+      {/* <footer style={{ position: "absolute", width: "100%", left: "0", bottom: "0", display: "flex", justifyContent: "center", marginTop: "1rem" }}>
         <Pagination count={10} page={page} onChange={handleChange} />
-      </footer>
+      </footer> */}
     </div>
   )
 }

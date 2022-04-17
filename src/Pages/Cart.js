@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 import { Grid, Button } from '@mui/material'
@@ -37,53 +37,50 @@ const Cart = () => {
                 <ul>
                   {items.map(item => (
                     <li style={{ display: "flex", }}>
-                      <img src={item.image} style={{ width: "200px", height: "200px" }} alt="img"></img>
+                      <img src={item.image} style={{ width: "250px", height: "250px" }} alt="img"></img>
                       <div style={{ width: "100%", display: "flex", justifyContent: "space-between", position: "relative" }}>
                         <div>
                           <h1>{item.price} $</h1>
                           <div>{item.description}</div>
                         </div>
-                        <Button style={{ position: "absolute", right: "10%" }} variant='text' color='error' onClick={() => { dispatch(removevalue(item.price)); dispatch(remove(item)); dispatch(decrement()) }} endIcon=<ClearIcon />></Button>
-                    </div>
-
-
+                        <Button style={{ position: "absolute", right: "10%" }} variant='text' color='error' onClick={() => { dispatch(removevalue(item.price)); dispatch(remove(item)); dispatch(decrement()) }} endIcon={<ClearIcon />}></Button>
+                      </div>
                     </li>
-
                   ))}
-              </ul>
-              <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
-                SUB-TOTAL {totalValue}$
+                </ul>
+                <div style={{ display: "flex", justifyContent: "flex-end", wordSpacing: "20px" }}>
+                  SUB-TOTAL {totalValue}$
+                </div>
               </div>
-            </div>
-          </Grid>
-          <Grid style={{ backgroundColor: "white" }} item xs={12} sm={6} >
-            <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>TOTAL</div>
-            <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
-              <hr />
-              <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{totalValue} $</span></div>
-              <br />
-              <div style={{ display: "flex", justifyContent: "space-between" }}>Delivery (free)<InfoOutlinedIcon></InfoOutlinedIcon></div>
-              <br />
-              <hr />
-              <br />
-              <Button size="large" fullWidth variant="contained" color="success">CHECKOUT</Button>
-              <br />
-              <br />
-              <div>WE ACCEPT:</div>
-              <br />
-              <div><img src={mastercard} alt='mastercard' /><img src={visa} alt='visa' /><img src={amex} alt='amex' /><img src={paypal} alt='paypal' /></div>
-            </div>
-          </Grid>
-        </Grid >
-      </div >
+            </Grid>
+            <Grid style={{ backgroundColor: "white" }} item xs={12} sm={6} >
+              <div style={{ fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>TOTAL</div>
+              <div style={{ marginRight: "5vw", fontFamily: "Fredoka", fontWeight: "bold", fontSize: "1.5vw" }}>
+                <hr />
+                <div style={{ display: "flex", justifyContent: "space-between" }}>Sub-total  <span>{totalValue} $</span></div>
+                <br />
+                <div style={{ display: "flex", justifyContent: "space-between" }}>Delivery (free)<InfoOutlinedIcon></InfoOutlinedIcon></div>
+                <br />
+                <hr />
+                <br />
+                <Button size="large" fullWidth variant="contained" color="success">CHECKOUT</Button>
+                <br />
+                <br />
+                <div>WE ACCEPT:</div>
+                <br />
+                <div><img src={mastercard} alt='mastercard' /><img src={visa} alt='visa' /><img src={amex} alt='amex' /><img src={paypal} alt='paypal' /></div>
+              </div>
+            </Grid>
+          </Grid >
+        </div >
       </div >
     )
   else {
-  history.push('/login')
-  return (
-    <div></div>
-  )
-}
+    history.push('/login')
+    return (
+      <div></div>
+    )
+  }
 }
 
 export default Cart

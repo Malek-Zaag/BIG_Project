@@ -4,11 +4,9 @@ import { Grid, Button, Typography } from "@mui/material"
 import { useHistory } from 'react-router-dom'
 import { add } from '../redux/cartAdder'
 import { increment } from '../redux/counter'
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 const ProductPage = ({ id }) => {
-    const number = useSelector((state) => state.counterReducer.count)
-    const items = useSelector((state) => state.itemReducer.items)
     const dispatch = useDispatch()
     const [product, setProduct] = useState({})
     const [Loading, setLoading] = useState(true)
@@ -32,11 +30,19 @@ const ProductPage = ({ id }) => {
                 }
             })
             .catch(err => console.log(err))
-        return () => { isMounted = false }
-    }, [history, id])
+        if (product)
+            return () => { isMounted = false }
+    }, [history, id, product])
+    window.onload = function () {
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
+    window.onload()
     if (Loading) return (
         <div>
-            <Navbar>{window.location.reload}</Navbar>
+            <Navbar></Navbar>
             <div>Loading ....</div>
         </div>
     )

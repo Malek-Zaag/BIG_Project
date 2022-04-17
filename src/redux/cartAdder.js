@@ -18,10 +18,13 @@ export const counterSlice = createSlice({
         remove: (state, action) => {
             state.items.pop(action.payload)
         },
+        reset: (state) => {
+            state.items = []
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { add, remove } = counterSlice.actions
+export const { add, remove, reset } = counterSlice.actions
 
 export default counterSlice.reducer
