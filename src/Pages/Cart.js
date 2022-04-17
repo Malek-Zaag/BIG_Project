@@ -24,6 +24,24 @@ const Cart = () => {
     return sum
   }
   totalValue = totalSum(items)
+  const handleClick = () => {
+    fetch('http://localhost:4000/create-checkout-session', {
+      credentials: 'include',
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: items,
+      })
+    })
+      .then((res) => {
+        if (res.ok) return res.json()
+        return res.json().then(json => Promise.reject(json))
+      })
+      .then(({ url }) => {
+        window.location = url;
+      })
+      .catch(err => console.log(err))
+  }
   if (document.cookie)
     return (
       <div style={{ backgroundColor: "#DCDCDC" }}>
@@ -63,7 +81,7 @@ const Cart = () => {
                 <br />
                 <hr />
                 <br />
-                <Button size="large" fullWidth variant="contained" color="success">CHECKOUT</Button>
+                <Button size="large" fullWidth variant="contained" color="success" onClick={() => handleClick()}>CHECKOUT</Button>
                 <br />
                 <br />
                 <div>WE ACCEPT:</div>
